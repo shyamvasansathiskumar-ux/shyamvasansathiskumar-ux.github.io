@@ -1,2 +1,7 @@
 # shyamvasansathiskumar-ux.github.io
-Portfolio: AI red-teaming, agent safety and AI governance. Six projects you can try in the browser.
+
+Portfolio of Shyam Kumar: AI red-teaming, agent safety and AI governance. Live at [shyamvasansathiskumar-ux.github.io](https://shyamvasansathiskumar-ux.github.io/).
+
+Projects: [Kaaval](https://shyamvasansathiskumar-ux.github.io/kaaval/) · [Kaappu](https://shyamvasansathiskumar-ux.github.io/kaappu/) · [FairDoor](https://shyamvasansathiskumar-ux.github.io/fairdoor/) · [AquaNXT](https://shyamvasansathiskumar-ux.github.io/aquanxt/) · [UpAid](https://upaid-site.vercel.app) · [Virasat](https://virasatweb-seven.vercel.app)
+
+Static site, no build step: Three.js, GSAP and Lenis are vendored next to `index.html`.
