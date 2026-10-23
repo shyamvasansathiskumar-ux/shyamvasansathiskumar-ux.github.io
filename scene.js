@@ -1,9 +1,9 @@
-// Portfolio world: a gallery of the seven projects as small sculptures on the sand.
+// Portfolio world: a gallery of the nine projects as small sculptures on the sand.
 // Each project chapter dollies the camera to its piece.
 import { createWorld, THREE, smooth } from "./world.js";
 
 const FLOOR = -1.6;
-const C = { kaaval: "#ec5418", pathivu: "#9e1b32", kaappu: "#2a3cf2", fairdoor: "#12734a", aquanxt: "#0b7a75", upaid: "#a6c514", virasat: "#a0752a", ink: "#15120e", paper: "#f1ebdf" };
+const C = { kaaval: "#ec5418", pathivu: "#9e1b32", kaappu: "#2a3cf2", fairdoor: "#12734a", aquanxt: "#0b7a75", upaid: "#a6c514", virasat: "#a0752a", mugam: "#b3266b", stewards: "#9c6400", ink: "#15120e", paper: "#f1ebdf" };
 
 createWorld(document.getElementById("world"), async ({ scene, camera, sun }) => {
   const std = (c, o = {}) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.45, ...o });
@@ -89,6 +89,44 @@ createWorld(document.getElementById("world"), async ({ scene, camera, sun }) => 
     for (let i = 0; i < 5; i++) { const c = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 0.06, 32), brass); c.position.set(1.25, 0.03 + i * 0.065, 0.7); g.add(c); }
     g.rotation.y = 0.4; pieces.push({ g: sh(g), key: "virasat" }); }
 
+  // 8 · Mugam: a face drawn only as its landmark points, in a glass oval, with the device key
+  { const g = new THREE.Group(), ink = std(C.ink), acc = std(C.mugam), brass = new THREE.MeshPhysicalMaterial({ color: "#c49a3a", roughness: 0.28, metalness: 0.9 });
+    const rim = new THREE.Mesh(new THREE.TorusGeometry(1, 0.025, 10, 120), ink); rim.scale.set(0.95, 1.2, 1); rim.position.y = 1.55;
+    const pane = new THREE.Mesh(new THREE.CircleGeometry(1, 80), glass()); pane.scale.set(0.95, 1.2, 1); pane.position.set(0, 1.55, -0.02);
+    const foot = box(0.6, 0.06, 0.4, ink); foot.position.y = 0.03; const stem = box(0.05, 0.36, 0.05, ink); stem.position.y = 0.2;
+    g.add(rim, pane, foot, stem);
+    const dot = new THREE.SphereGeometry(0.035, 10, 8);
+    const pts = [];
+    for (let i = 0; i <= 16; i++) { const a = Math.PI * (1.08 + (i / 16) * 0.84); pts.push([Math.cos(a) * 0.72, 0.15 + Math.sin(a) * 0.85, 0]); }
+    for (const cx of [-0.32, 0.32]) for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2; pts.push([cx + Math.cos(a) * 0.12, 0.27 + Math.sin(a) * 0.05, 1]); }
+    for (const cx of [-0.36, 0.36]) for (let i = 0; i < 5; i++) pts.push([cx - 0.2 + i * 0.1, 0.46 + Math.sin((i / 4) * Math.PI) * 0.06, 0]);
+    for (let i = 0; i < 4; i++) pts.push([0, 0.32 - i * 0.11, 0]);
+    for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI * 2; pts.push([Math.cos(a) * 0.27, -0.4 + Math.sin(a) * 0.09, 0]); }
+    for (const [x, y, e] of pts) { const m = new THREE.Mesh(dot, e ? acc : ink); m.position.set(x, 1.55 + y, 0.08); g.add(m); }
+    const key = new THREE.Group();
+    const bow = new THREE.Mesh(new THREE.TorusGeometry(0.16, 0.045, 12, 32), brass); const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.7, 12), brass);
+    shaft.rotation.z = Math.PI / 2; shaft.position.x = 0.5; const bit = box(0.05, 0.12, 0.04, brass); bit.position.set(0.76, -0.07, 0);
+    key.add(bow, shaft, bit); key.position.set(0.9, 0.06, 0.6); key.rotation.x = -Math.PI / 2; g.add(key);
+    g.rotation.y = -0.35; pieces.push({ g: sh(g), key: "mugam" }); }
+
+  // 9 · Stewards' Room: an unbranded open-wheel car inside twelve penalty-point tiles
+  { const g = new THREE.Group(), ink = std(C.ink), body = phys(C.paper), acc = std(C.stewards), red = std("#b3401f");
+    const car = new THREE.Group();
+    const fl = box(2.5, 0.04, 0.85, ink); fl.position.y = 0.1; const tub = box(1.2, 0.24, 0.38, body); tub.position.set(0.1, 0.26, 0);
+    const nose = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.16, 1.0, 16), body); nose.rotation.z = -Math.PI / 2; nose.position.set(-0.98, 0.25, 0);
+    const fw = box(0.26, 0.03, 1.1, ink); fw.position.set(-1.45, 0.12, 0); const rw = box(0.25, 0.03, 0.8, ink); rw.position.set(1.38, 0.64, 0);
+    const pyl = box(0.04, 0.34, 0.04, ink); pyl.position.set(1.3, 0.42, 0); const stripe = box(1.0, 0.02, 0.07, acc); stripe.position.set(0.7, 0.4, 0);
+    car.add(fl, tub, nose, fw, rw, pyl, stripe);
+    const tyre = std("#1d1a16", { roughness: 0.85 });
+    for (const [x, r] of [[-0.85, 0.22], [1.0, 0.25]]) for (const sd of [-1, 1]) { const t = new THREE.Mesh(new THREE.CylinderGeometry(r, r, 0.24, 20), tyre); t.rotation.x = Math.PI / 2; t.position.set(x, r, sd * 0.56); car.add(t); }
+    g.add(car);
+    for (let i = 0; i < 12; i++) { const a = Math.PI / 2 - (i / 12) * Math.PI * 2; const t = box(0.46, 0.04, 0.26, i < 8 ? ink : i < 11 ? red : std(C.paper)); t.position.set(Math.cos(a) * 2.0, 0.02, Math.sin(a) * 2.0); t.rotation.y = -a + Math.PI / 2; g.add(t); }
+    g.rotation.y = 0.5; g.scale.setScalar(0.9); pieces.push({ g: sh(g), key: "stewards" }); }
+
+  // gallery order, the same as the work section
+  const ORDER = ["kaaval", "pathivu", "mugam", "kaappu", "stewards", "fairdoor", "aquanxt", "upaid", "virasat"];
+  pieces.sort((a, b) => ORDER.indexOf(a.key) - ORDER.indexOf(b.key));
+
   // lay them out along a gentle curve
   const SP = 6.2;
   pieces.forEach((p, i) => { p.x = i * SP; p.z = -Math.sin(i * 0.5) * 1.2; p.g.position.x = p.x; p.g.position.z = p.z; p.g.position.y += FLOOR; p.base = p.g.rotation.y; p.baseY = p.g.position.y; p.s0 = p.g.scale.x; scene.add(p.g); });
@@ -99,8 +137,8 @@ createWorld(document.getElementById("world"), async ({ scene, camera, sun }) => 
   const K = [
     [-14, 1.6, 9, 6, 0.2, -4],             // 0 hero: the gallery receding on the right
     [last + 14, 1.6, 9, last - 6, 0.2, -4], // 1 why: the same gallery, seen from the other end, on the left
-    focus(0), focus(1), focus(2), focus(3), focus(4), focus(5), focus(6),
-    [last / 2, 8.5, 21, last / 2, -1.2, -1], // 9 research: everything from above
+    focus(0), focus(1), focus(2), focus(3), focus(4), focus(5), focus(6), focus(7), focus(8),
+    [last / 2, 8.5, 21, last / 2, -1.2, -1], // 11 research: everything from above
     [last / 2, 8.5, 21, last / 2, -1.2, -1],
     [last / 2, 6, 18, last / 2, -1, -1],
     [last / 2, 3.5, 16, last / 2, -0.6, -1],
@@ -124,7 +162,7 @@ createWorld(document.getElementById("world"), async ({ scene, camera, sun }) => 
       p.g.rotation.y = p.base + Math.sin(t * 0.25 + i) * 0.12 + (p.spin ? t * p.spin : 0) + focused * st.px * 0.35;
       p.g.position.y = p.baseY + Math.sin(t * 0.9 + i) * 0.03;
       // in the work chapter only the project being read stays on stage
-      const inWork = smooth(1.55, 1.95, st.stage) * (1 - smooth(8.6, 9.1, st.stage));
+      const inWork = smooth(1.55, 1.95, st.stage) * (1 - smooth(10.6, 11.1, st.stage));
       const near = 1 - smooth(0.42, 0.78, Math.abs(st.stage - 0.5 - (i + 2)));
       p.g.scale.setScalar(Math.max(0.0001, (1 - inWork) + inWork * near) * (p.s0 || 1));
     });

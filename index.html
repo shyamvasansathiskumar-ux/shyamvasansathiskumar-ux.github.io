@@ -7,7 +7,7 @@
 <meta name="description" content="Shyam Kumar, CSE student at Rajalakshmi Engineering College, Chennai: testing how AI systems fail, with an attacker and without one, and building the controls that hold. Kaaval, Pathivu, Kaappu, FairDoor, AquaNXT, UpAid, Virasat.">
 <meta name="theme-color" content="#e8e1d3">
 <meta property="og:title" content="Shyam Kumar · AI red-teaming & governance">
-<meta property="og:description" content="AI red-teaming, agent safety and AI governance. Seven projects, all live: Kaaval, Pathivu, Kaappu, FairDoor, AquaNXT, UpAid and Virasat, each with a working demo you can try in your browser.">
+<meta property="og:description" content="AI red-teaming, agent safety and AI governance. Nine projects, all live: Kaaval, Pathivu, Mugam, Kaappu, Stewards' Room, FairDoor, AquaNXT, UpAid and Virasat, each with a working demo you can try in your browser.">
 <meta property="og:image" content="https://shyamvasansathiskumar-ux.github.io/og.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="wrap hero-meta" data-intro>
-      <span class="label bare">7 projects</span><span class="label bare">5 live tools</span><span class="label bare">All public, all checkable</span><span class="label bare scroll-cue">Scroll</span>
+      <span class="label bare">9 projects</span><span class="label bare">7 live tools</span><span class="label bare">All public, all checkable</span><span class="label bare scroll-cue">Scroll</span>
     </div>
   </section>
 
@@ -76,13 +76,13 @@
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true"><div class="track" data-speed="50"><span>Kaaval</span><span>Pathivu</span><span>Kaappu</span><span>FairDoor</span><span>AquaNXT</span><span>UpAid</span><span>Virasat</span></div></div>
+  <div class="marquee" aria-hidden="true"><div class="track" data-speed="50"><span>Kaaval</span><span>Pathivu</span><span>Mugam</span><span>Kaappu</span><span>Stewards' Room</span><span>FairDoor</span><span>AquaNXT</span><span>UpAid</span><span>Virasat</span></div></div>
 
   <!-- 02 · work -->
   <section id="work" class="work" data-chapter="Work">
     <div class="wrap work-head">
       <p class="label" data-scramble>02 · The work</p>
-      <h2 class="h1" data-split>Seven projects. <em>Try them, don't take my word.</em></h2>
+      <h2 class="h1" data-split>Nine projects. <em>Try them, don't take my word.</em></h2>
     </div>
 
     <article class="proj" data-stage="2" style="--pa:#ec5418">
@@ -109,9 +109,21 @@
       </div>
     </article>
 
-    <article class="proj" data-stage="4" style="--pa:#2a3cf2">
+    <article class="proj" data-stage="4" style="--pa:#b3266b">
       <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">03</span><span class="ptag">Applied cryptography · Java</span></div>
+        <div class="pmeta"><span class="pnum">03</span><span class="ptag">Authentication · Java + WebCrypto</span></div>
+        <div class="pbody">
+          <h3 class="pname" data-split>Mu<em>gam</em> <span class="tamil">முகம்</span></h3>
+          <p class="pline">Face sign-in where the face never leaves the device. The face check unlocks a key the browser won't export; the server only ever sees a signature.</p>
+          <ul class="proof" data-stagger><li><b>79</b>tests across Java, Node and a real browser</li><li><b>0</b>face images or templates sent to the server</li><li><b>Photo</b>a still photo of the enrolled face can't sign in</li></ul>
+          <div class="plinks"><a class="btn acc" href="https://shyamvasansathiskumar-ux.github.io/mugam/" target="_blank" rel="noopener">See it <span class="arr">↗</span></a><a class="btn ghost" href="https://shyamvasansathiskumar-ux.github.io/mugam/try.html" target="_blank" rel="noopener">Try it with your camera</a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/mugam" target="_blank" rel="noopener">Code</a></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj" data-stage="5" style="--pa:#2a3cf2">
+      <div class="wrap pgrid">
+        <div class="pmeta"><span class="pnum">04</span><span class="ptag">Applied cryptography · Java</span></div>
         <div class="pbody">
           <h3 class="pname" data-split>Kaap<em>pu</em> <span class="tamil">காப்பு</span></h3>
           <p class="pline">A 2FA authenticator built from the RFCs, with an encrypted vault whose key is split into shares. Lose your phone, keep your accounts.</p>
@@ -121,9 +133,21 @@
       </div>
     </article>
 
-    <article class="proj" data-stage="5" style="--pa:#12734a">
+    <article class="proj" data-stage="6" style="--pa:#9c6400">
       <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">04</span><span class="ptag">Systems · Simulation</span></div>
+        <div class="pmeta"><span class="pnum">05</span><span class="ptag">Data · Formula 1 · Python</span></div>
+        <div class="pbody">
+          <h3 class="pname" data-split>Stewards' <em>Room</em></h3>
+          <p class="pline">Same offence, same penalty? An open register of F1 stewards' decisions that quotes the FIA's own documents, runs each driver's penalty-points clock and checks the FIA's arithmetic.</p>
+          <ul class="proof" data-stagger><li><b>2,629</b>FIA documents indexed, 2025 and 2026</li><li><b>4 → 0</b>penalised collisions with points, 2025 vs 2026 (small sample)</li><li><b>44</b>tests, standard library only</li></ul>
+          <div class="plinks"><a class="btn acc" href="https://shyamvasansathiskumar-ux.github.io/stewards-room/" target="_blank" rel="noopener">See it <span class="arr">↗</span></a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/stewards-room" target="_blank" rel="noopener">Code</a></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj" data-stage="7" style="--pa:#12734a">
+      <div class="wrap pgrid">
+        <div class="pmeta"><span class="pnum">06</span><span class="ptag">Systems · Simulation</span></div>
         <div class="pbody">
           <h3 class="pname" data-split>Fair<em>Door</em></h3>
           <p class="pline">Rate limiting that can tell a deadline rush from a script flood: count per student, judge the deadline on arrival.</p>
@@ -133,9 +157,9 @@
       </div>
     </article>
 
-    <article class="proj" data-stage="6" style="--pa:#0b7a75">
+    <article class="proj" data-stage="8" style="--pa:#0b7a75">
       <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">05</span><span class="ptag">Hardware · Venture · In progress</span></div>
+        <div class="pmeta"><span class="pnum">07</span><span class="ptag">Hardware · Venture · In progress</span></div>
         <div class="pbody">
           <h3 class="pname" data-split>Aqua<em>NXT</em> <span class="tamil">நீர்</span></h3>
           <p class="pline">Gravity water filters that tell you how they're doing. Home, Go and Station, with Neer, an on-board assistant that never says "safe" without evidence.</p>
@@ -145,9 +169,9 @@
       </div>
     </article>
 
-    <article class="proj" data-stage="7" style="--pa:#7d9a12">
+    <article class="proj" data-stage="9" style="--pa:#7d9a12">
       <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">06</span><span class="ptag">AI · Hackathon · Team</span></div>
+        <div class="pmeta"><span class="pnum">08</span><span class="ptag">AI · Hackathon · Team</span></div>
         <div class="pbody">
           <h3 class="pname" data-split>Up<em>Aid</em></h3>
           <p class="pline">Evidence-first financial aid discovery. Five agents search institutional policy and answer only with source excerpts. If it's not in the source, it isn't aid.</p>
@@ -157,9 +181,9 @@
       </div>
     </article>
 
-    <article class="proj" data-stage="8" style="--pa:#a0752a">
+    <article class="proj" data-stage="10" style="--pa:#a0752a">
       <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">07</span><span class="ptag">Fintech · Hackathon · Team</span></div>
+        <div class="pmeta"><span class="pnum">09</span><span class="ptag">Fintech · Hackathon · Team</span></div>
         <div class="pbody">
           <h3 class="pname" data-split>Vira<em>sat</em></h3>
           <p class="pline">Financial continuity for families: money stranded across RBI, EPFO, IRDAI, SEBI and LIC, brought into one calm record of what to claim next.</p>
@@ -171,7 +195,7 @@
   </section>
 
   <!-- 03 · research -->
-  <section id="research" data-stage="9" data-chapter="Research">
+  <section id="research" data-stage="11" data-chapter="Research">
     <div class="wrap">
       <div class="head-row">
         <p class="label" data-scramble>03 · Research &amp; writing</p>
@@ -187,7 +211,7 @@
   </section>
 
   <!-- 04 · credentials -->
-  <section id="credentials" data-stage="10" data-chapter="Credentials">
+  <section id="credentials" data-stage="12" data-chapter="Credentials">
     <div class="wrap grid">
       <div class="col-l stack">
         <p class="label" data-scramble>04 · Credentials</p>
@@ -206,7 +230,7 @@
   </section>
 
   <!-- 05 · about -->
-  <section id="about" class="ink-band" data-stage="11" data-chapter="About">
+  <section id="about" class="ink-band" data-stage="13" data-chapter="About">
     <div class="wrap grid">
       <div class="col-l stack">
         <p class="label" data-scramble>05 · About</p>
@@ -225,7 +249,7 @@
   </section>
 </main>
 
-<footer id="contact" data-stage="12" data-chapter="Contact">
+<footer id="contact" data-stage="14" data-chapter="Contact">
   <div class="wrap">
     <p class="label">06 · Contact</p>
     <p class="big">Let's talk <em>risk.</em></p>
