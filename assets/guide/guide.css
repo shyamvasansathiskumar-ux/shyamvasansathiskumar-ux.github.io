@@ -1,0 +1,39 @@
+/* The plain-English guide: a reading page in the house style, no 3D. */
+body.guide { background: var(--bg); }
+.guide main { padding-top: 72px; }
+.g-hero { padding: clamp(70px, 14vh, 150px) 0 clamp(40px, 8vh, 80px); }
+.g-hero .label { margin-bottom: 26px; }
+.g-hero .h1 { max-width: 15ch; }
+.g-hero .lede { margin-top: 28px; max-width: 52ch; }
+.g-sec { padding: clamp(60px, 10vh, 110px) 0; border-top: 1px solid var(--line); }
+.g-grid { display: grid; grid-template-columns: 260px minmax(0, 760px); gap: clamp(20px, 4vw, 72px); }
+.g-col { display: grid; gap: 22px; }
+.g-three { margin: 0; padding: 0; list-style: none; counter-reset: g; display: grid; gap: 14px; }
+.g-three li { counter-increment: g; display: grid; grid-template-columns: 44px 1fr; gap: 14px; color: var(--ink-2); line-height: 1.55; }
+.g-three li::before { content: counter(g, decimal-leading-zero); font: 500 12px/2 var(--mono); letter-spacing: .12em; color: var(--acc); }
+.g-three b, .g-col .body b { color: var(--ink); font-weight: 500; }
+.g-index { display: flex; flex-wrap: wrap; gap: 8px; padding-block: 10px 40px; position: sticky; top: 72px; z-index: 5; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding-top: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.g-index a { height: 34px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line-2); font: 500 12.5px var(--sans); color: var(--ink); text-decoration: none; transition: background .25s, color .25s, border-color .25s; }
+.g-index a::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--pa); margin-right: 8px; }
+.g-index a:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.gp { padding: clamp(60px, 11vh, 120px) 0; border-top: 1px solid var(--line); scroll-margin-top: 140px; }
+.gp-head { display: grid; align-content: start; gap: 10px; }
+.gp-tag { font: 500 11px/1.5 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--pa); }
+.gp-name { font: 300 clamp(52px, 6vw, 96px)/.9 var(--serif); letter-spacing: -.03em; margin: 0; }
+.gp-ta { font: 400 italic 17px/1.3 var(--serif); color: var(--mute); }
+.gp-one { margin: 0; font: 400 clamp(26px, 2.6vw, 38px)/1.18 var(--serif); letter-spacing: -.012em; max-width: 26ch; text-wrap: balance; }
+.gp-dl, .gloss { margin: 0; display: grid; }
+.gp-dl div, .gloss div { display: grid; grid-template-columns: 170px 1fr; gap: 18px; padding: 16px 0; border-top: 1px dashed var(--line); }
+.gp-dl dt, .gloss dt { font: 500 11px/1.7 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
+.gp-dl dd, .gloss dd { margin: 0; color: var(--ink-2); line-height: 1.6; font-size: 16.5px; max-width: 60ch; }
+.gp .btn.acc { --b: var(--pa); border-color: var(--pa); }
+.gp .btn.acc::before { background: var(--ink); }
+.ink-band .gloss div { border-top-color: rgba(232, 225, 211, .16); }
+.ink-band .gloss dt { color: rgba(232, 225, 211, .55); }
+.ink-band .gloss dd { color: rgba(232, 225, 211, .82); }
+.ink-band .h3 { color: var(--bg); }
+@media (max-width: 860px) {
+  .g-grid { grid-template-columns: 1fr; }
+  .gp-dl div, .gloss div { grid-template-columns: 1fr; gap: 4px; }
+  .g-index { position: static; }
+}

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shyam Kumar · The work, in plain English</title>
+<meta name="description" content="Every project by Shyam Kumar explained without jargon: the problem, what it does, how you can check it works, and where it stops.">
+<meta name="theme-color" content="#e8e1d3">
+<meta property="og:title" content="The work, in plain English · Shyam Kumar">
+<meta property="og:description" content="Eleven projects explained without jargon: the problem, what each one does, how to check it, and where it stops.">
+<meta property="og:image" content="https://shyamvasansathiskumar-ux.github.io/og.png">
+<meta property="og:url" content="https://shyamvasansathiskumar-ux.github.io/guide.html">
+<link rel="canonical" href="https://shyamvasansathiskumar-ux.github.io/guide.html">
+<link rel="preload" href="assets/guide/cormorant.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/guide/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/guide/base.css">
+<link rel="stylesheet" href="assets/guide/house.css">
+<link rel="stylesheet" href="assets/guide/guide.css">
+</head>
+<body class="guide">
+<header class="nav scrolled">
+  <div class="wrap">
+    <a class="brand" href="./"><span class="dot"></span>Shyam Kumar</a>
+    <ul>
+      <li><a href="#how">How to read this</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#words">Words</a></li>
+    </ul>
+    <a class="btn sm ghost" href="./">Portfolio <span class="arr">→</span></a>
+  </div>
+</header>
+
+<main>
+  <section class="g-hero">
+    <div class="wrap">
+      <p class="label">The work, in plain English</p>
+      <h1 class="h1">What each project <em>does,</em> and why it matters.</h1>
+      <p class="lede">No jargon, no acronyms without a meaning next to them. For each project: the problem, what it does about it, how you can check for yourself, and where it stops.</p>
+    </div>
+  </section>
+
+  <section id="how" class="g-sec">
+    <div class="wrap g-grid">
+      <p class="label">How to read this</p>
+      <div class="g-col">
+        <h2 class="h3">Three ways to check anything here</h2>
+        <ol class="g-three">
+          <li><span><b>Try it.</b> Seven projects run in your browser. Nothing to install, and nothing you type is sent anywhere unless a page says so.</span></li>
+          <li><span><b>Read the tests.</b> A test is a small program that checks one claim, for example "a printed photo can't sign in". Every project lists how many it has; each one is in the code.</span></li>
+          <li><span><b>Read the limits.</b> Every project says what it doesn't do. If a claim isn't backed by a test, a source or a measurement, it isn't on the page.</span></li>
+        </ol>
+        <p class="body">The thread through all of it: <b>systems fail in two ways.</b> Someone attacks them, or they go wrong on their own. Most of this work is about building checks that hold either way, and records that can't be quietly changed afterwards.</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="g-index wrap" aria-label="Projects">
+    <a href="#kaaval" style="--pa:#ec5418">Kaaval</a><a href="#pathivu" style="--pa:#9e1b32">Pathivu</a><a href="#mugam" style="--pa:#b3266b">Mugam</a><a href="#kaappu" style="--pa:#2a3cf2">Kaappu</a><a href="#stewards" style="--pa:#9c6400">Stewards' Room</a><a href="#kanakku" style="--pa:#1f3b5c">Kanakku</a><a href="#thavanai" style="--pa:#2c5e3f">Thavanai</a><a href="#fairdoor" style="--pa:#12734a">FairDoor</a><a href="#aquanxt" style="--pa:#0b7a75">AquaNXT</a><a href="#upaid" style="--pa:#7d9a12">UpAid</a><a href="#virasat" style="--pa:#a0752a">Virasat</a>
+  </nav>
+
+  <div id="projects">
+
+  <article class="gp" id="kaaval" style="--pa:#ec5418">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">AI safety</span><h2 class="gp-name">Kaaval</h2><span class="gp-ta">காவல் · “guard”</span></div>
+      <div class="g-col">
+        <p class="gp-one">A guard that stands between an AI coding assistant and your computer.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>AI coding assistants can now run commands on real machines. Sometimes they run the wrong one: they have deleted production databases and whole folders, with nobody attacking them at all. Telling an assistant "don't do that" isn't the same as stopping it.</dd></div>
+          <div><dt>What it does</dt><dd>Every command the assistant wants to run goes through Kaaval first. It answers <i>allow</i>, <i>ask the human</i> or <i>refuse</i>, before anything happens, and writes each answer to a log that can't be quietly edited.</dd></div>
+          <div><dt>How you can check</dt><dd>It replays six real incidents where an AI agent destroyed data, and refuses every one. 39 tests. The page runs the actual program in your browser.</dd></div>
+          <div><dt>Where it stops</dt><dd>It can only guard the doors it's placed in front of. An assistant with another route to the machine needs that route guarded too.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://shyamvasansathiskumar-ux.github.io/kaaval/" target="_blank" rel="noopener">Try it <span class="arr">↗</span></a><a class="btn ghost sm" href="https://github.com/shyamvasansathiskumar-ux/kaaval" target="_blank" rel="noopener">Code</a></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="gp" id="pathivu" style="--pa:#9e1b32">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">AI governance</span><h2 class="gp-name">Pathivu</h2><span class="gp-ta">பதிவு · “record”</span></div>
+      <div class="g-col">
+        <p class="gp-one">A logbook for when AI goes wrong at an Indian company, that also keeps the legal deadlines.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>When an AI system causes harm, Indian rules start clocks: certain cyber incidents must be reported to CERT-In, the national cyber-security agency, within six hours of noticing them, and personal-data breaches have their own reporting duty under the new data-protection law. Records of what happened are also easy to "tidy up" later.</dd></div>
+          <div><dt>What it does</dt><dd>Records each incident, tags it with the standard catalogues of AI risks, and counts down the reporting deadlines from the moment the company knew. The database itself refuses to delete or rewrite history.</dd></div>
+          <div><dt>How you can check</dt><dd>110 tests, 65 of them deliberate attempts to break or rewrite the database. The browser version gives the same answers as the main program in all 240 test cases.</dd></div>
+          <div><dt>Where it stops</dt><dd>It keeps records and deadlines; it isn't legal advice.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://shyamvasansathiskumar-ux.github.io/pathivu/" target="_blank" rel="noopener">Try it <span class="arr">↗</span></a><a class="btn ghost sm" href="https://shyamvasansathiskumar-ux.github.io/pathivu/learn.html" target="_blank" rel="noopener">Its own plain guide</a><a class="btn ghost sm" href="https://github.com/shyamvasansathiskumar-ux/pathivu" target="_blank" rel="noopener">Code</a></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="gp" id="mugam" style="--pa:#b3266b">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">Sign-in</span><h2 class="gp-name">Mugam</h2><span class="gp-ta">முகம் · “face”</span></div>
+      <div class="g-col">
+        <p class="gp-one">Sign in to a website with your face, without your face ever leaving your device.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>Most face log-ins send a picture or a measurement of your face to a company's server. If that server leaks, you can change a password, but you can't change your face.</dd></div>
+          <div><dt>What it does</dt><dd>Think of a locked drawer on your own phone or laptop. Your face opens the drawer; inside is a key that can sign a message but can't be copied out, not even by Mugam. The website sends a one-time puzzle, the key signs it, and the website checks the signature. It never sees your face.</dd></div>
+          <div><dt>How you can check</dt><dd>79 tests, including one in a real browser where a still photo of the enrolled face tries to sign in and fails, because you must blink and turn your head. The page shows its own key signing live.</dd></div>
+          <div><dt>Where it stops</dt><dd>A printed photo fails; a skilled attacker with a video or a mask is a harder test that it hasn't been certified against. It's a working design, not a certified product.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://shyamvasansathiskumar-ux.github.io/mugam/" target="_blank" rel="noopener">See it <span class="arr">↗</span></a><a class="btn ghost sm" href="https://shyamvasansathiskumar-ux.github.io/mugam/try.html" target="_blank" rel="noopener">Try it with your camera</a><a class="btn ghost sm" href="https://github.com/shyamvasansathiskumar-ux/mugam" target="_blank" rel="noopener">Code</a></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="gp" id="kaappu" style="--pa:#2a3cf2">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">Cryptography</span><h2 class="gp-name">Kaappu</h2><span class="gp-ta">காப்பு · “protection”</span></div>
+      <div class="g-col">
+        <p class="gp-one">The six-digit-code app you use for two-step log-in, built from the official specifications.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>Those six-digit codes protect most important accounts. Lose the phone that makes them and you can be locked out of everything.</dd></div>
+          <div><dt>What it does</dt><dd>Makes the codes exactly as the published standards describe, keeps your secrets in an encrypted vault, and splits the vault's key into three pieces. Any two pieces rebuild it, so losing one piece, or one device, doesn't lose your accounts.</dd></div>
+          <div><dt>How you can check</dt><dd>70 tests, including every official test value in the standards. The page runs 36 checks live.</dd></div>
+          <div><dt>Where it stops</dt><dd>It hasn't had an outside security audit. Don't make it your only authenticator.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://shyamvasansathiskumar-ux.github.io/kaappu/" target="_blank" rel="noopener">Try it <span class="arr">↗</span></a><a class="btn ghost sm" href="https://github.com/shyamvasansathiskumar-ux/kaappu" target="_blank" rel="noopener">Code</a></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="gp" id="stewards" style="--pa:#9c6400">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">Open data · F1</span><h2 class="gp-name">Stewards' Room</h2><span class="gp-ta">Same offence, same penalty?</span></div>
+      <div class="g-col">
+        <p class="gp-one">A public record of Formula 1 penalty decisions, so fans can compare like with like.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>After every F1 race, fans argue that one driver got a harsher penalty than another for the same thing. The official decisions are published as hundreds of separate PDF documents, which makes comparing them hard.</dd></div>
+          <div><dt>What it does</dt><dd>Reads the official documents and keeps every field word for word, tracks each driver's penalty points (12 in a year means a one-race ban), and lines up decisions made under the same rule. You can run the ban clock, play "you make the call" on real incidents, and search the register.</dd></div>
+          <div><dt>How you can check</dt><dd>Every decision links to the official PDF. It has indexed 2,629 official documents; 14 decisions are checked by hand so far, and the reader gets all 70 checked fields right. 44 tests.</dd></div>
+          <div><dt>Where it stops</dt><dd>It never says a decision was wrong. The stewards saw video and telemetry; the documents don't capture everything. The hand-checked set is small.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://shyamvasansathiskumar-ux.github.io/stewards-room/" target="_blank" rel="noopener">See it <span class="arr">↗</span></a><a class="btn ghost sm" href="https://github.com/shyamvasansathiskumar-ux/stewards-room" target="_blank" rel="noopener">Code</a></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="gp" id="kanakku" style="--pa:#1f3b5c">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">Research · paper in progress</span><h2 class="gp-name">Kanakku</h2><span class="gp-ta">கணக்கு · “account”</span></div>
+      <div class="g-col">
+        <p class="gp-one">A record of what government statistics said, and when, that nobody can quietly change.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>Government dashboards update numbers in place. When a figure is revised, the old one usually disappears, so nobody can later show what the official number was on a given day.</dd></div>
+          <div><dt>What it does</dt><dd>Keeps every version of a published table in a record where each entry is sealed to the one before it, and says exactly what changed between versions. It knows the difference between a real revision and a number that only looks different because it was rounded.</dd></div>
+          <div><dt>What it found</dt><dd>A year of the Reserve Bank of India's weekly forex-reserves table (59 releases): no revisions at all. A simple comparison would have wrongly reported about one change in four, all of them rounding. Across India's 2026 GDP base-year change, it shows which growth figure was official when.</dd></div>
+          <div><dt>Where it stops</dt><dd>It proves what it saw, not what others were shown. The paper is being prepared with a faculty co-author for a digital-government research conference.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://github.com/shyamvasansathiskumar-ux/kanakku" target="_blank" rel="noopener">Code and data <span class="arr">↗</span></a></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="gp" id="thavanai" style="--pa:#2c5e3f">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">Data retention · team project</span><h2 class="gp-name">Thavanai</h2><span class="gp-ta">தவணை · “due date”</span></div>
+      <div class="g-col">
+        <p class="gp-one">A register that makes a college club delete people's personal details on time, and keeps proof that it did.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>Clubs collect names, phone numbers and ID numbers for every event, in forms and spreadsheets that are never cleaned up. Years later the data is still sitting there, and nobody can say who has it.</dd></div>
+          <div><dt>What it does</dt><dd>Every collection gets a purpose and a delete-by date when it is created. The register shows what is due, refuses to let a deletion be marked done without a signed record, and never lets that record be edited afterwards.</dd></div>
+          <div><dt>How you can check</dt><dd>The whole register runs in your browser, with the same seven tables and four database rules as the Java and MySQL original. A page of 61 checks runs live and shows each one passing.</dd></div>
+          <div><dt>Where it stops</dt><dd>The browser version keeps its data on your own device, so it is a demo, not a shared system. Built with Krithika Sree V R and Skandesh Saran S G as a college project.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://shyamvasansathiskumar-ux.github.io/thavanai/" target="_blank" rel="noopener">Open the register <span class="arr">↗</span></a></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="gp" id="fairdoor" style="--pa:#12734a">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">Systems</span><h2 class="gp-name">FairDoor</h2><span class="gp-ta">Fair queues at deadline time</span></div>
+      <div class="g-col">
+        <p class="gp-one">A way for a college portal to survive a deadline rush without locking out honest students.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>At 11:59 pm, hundreds of students submit at once, often from the same campus Wi-Fi, so they all look like one address. A common protection, "limit each address", then blocks them as if they were an attack.</dd></div>
+          <div><dt>What it does</dt><dd>Counts per student instead of per address, and judges whether a submission met the deadline by when it arrived, not when it was finally processed.</dd></div>
+          <div><dt>How you can check</dt><dd>In a simulation of 300 students on one address, the usual method left about 68 students past the deadline (worse than no protection, about 60). FairDoor left none. You can run the simulation yourself; the browser version matches the original in all 90 runs.</dd></div>
+          <div><dt>Where it stops</dt><dd>It's a simulation, not a deployed portal.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://shyamvasansathiskumar-ux.github.io/fairdoor/" target="_blank" rel="noopener">Run it <span class="arr">↗</span></a><a class="btn ghost sm" href="https://github.com/shyamvasansathiskumar-ux/fairdoor" target="_blank" rel="noopener">Code</a></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="gp" id="aquanxt" style="--pa:#0b7a75">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">Hardware · venture</span><h2 class="gp-name">AquaNXT</h2><span class="gp-ta">நீர் · “water”</span></div>
+      <div class="g-col">
+        <p class="gp-one">Water filters that need no electricity and tell you honestly how they're doing.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>Many filters give no sign when they stop working, and some "smart" ones claim water is safe without measuring it.</dd></div>
+          <div><dt>What it does</dt><dd>Gravity-fed filters in three sizes: for a kitchen, for carrying, and for a school. A small on-board assistant, Neer, reports only what its sensors actually measure, and never says "safe" without evidence.</dd></div>
+          <div><dt>Status</dt><dd>Three prototypes. Finalist in the local round of ASU Venture X 2026. Lab results are due in November.</dd></div>
+          <div><dt>Where it stops</dt><dd>It's in progress; no lab-certified claims yet.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://shyamvasansathiskumar-ux.github.io/aquanxt/" target="_blank" rel="noopener">See it <span class="arr">↗</span></a></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="gp" id="upaid" style="--pa:#7d9a12">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">AI · team project</span><h2 class="gp-name">UpAid</h2><span class="gp-ta">Cintana AI Challenge 2026</span></div>
+      <div class="g-col">
+        <p class="gp-one">A financial-aid finder for students that only tells you what the official source actually says.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>AI chat tools can invent scholarships or rules that sound right. For a student deciding whether they can afford college, that's harmful.</dd></div>
+          <div><dt>What it does</dt><dd>Searches each university's own published policies and answers only with the exact text it found, with the source. If it isn't in the source, it isn't presented as aid.</dd></div>
+          <div><dt>How you can check</dt><dd>Every answer shows its source. 34 campuses in the registry; 155 tests.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://upaid-site.vercel.app" target="_blank" rel="noopener">Open it <span class="arr">↗</span></a></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="gp" id="virasat" style="--pa:#a0752a">
+    <div class="wrap g-grid">
+      <div class="gp-head"><span class="gp-tag">Fintech · team project</span><h2 class="gp-name">Virasat</h2><span class="gp-ta">1st place, FinTech, PEC Hacks 4.0</span></div>
+      <div class="g-col">
+        <p class="gp-one">Helps Indian families find money left unclaimed across banks, provident funds, insurance and investments.</p>
+        <dl class="gp-dl">
+          <div><dt>The problem</dt><dd>Large sums sit unclaimed with banks, the provident-fund body, insurers and investment registries, each with its own process. Families often don't know where to start.</dd></div>
+          <div><dt>What it does</dt><dd>Brings what a family may be owed across five regulators into one calm record of what to claim next.</dd></div>
+          <div><dt>Where it stops</dt><dd>The demo runs on sample data; nothing leaves the browser.</dd></div>
+        </dl>
+        <div class="plinks"><a class="btn acc sm" href="https://virasatweb-seven.vercel.app" target="_blank" rel="noopener">Open it <span class="arr">↗</span></a></div>
+      </div>
+    </div>
+  </article>
+  </div>
+
+  <section id="words" class="g-sec ink-band">
+    <div class="wrap g-grid">
+      <p class="label">Words used on this site</p>
+      <div class="g-col">
+        <h2 class="h3">A short glossary</h2>
+        <dl class="gloss">
+          <div><dt>Hash</dt><dd>A short fingerprint of some data. Change one letter and the fingerprint changes completely.</dd></div>
+          <div><dt>Hash chain / tamper-evident</dt><dd>Each entry includes the fingerprint of the one before it, so changing any old entry breaks every fingerprint after it. You can't hide an edit; you can only be caught making one.</dd></div>
+          <div><dt>Two-factor sign-in (2FA)</dt><dd>Signing in with something you know (a password) plus something you have (a phone making six-digit codes).</dd></div>
+          <div><dt>A key that can't be copied</dt><dd>Browsers can create a signing key that the website's own code is not allowed to read out. It can sign, but it can't leave the device.</dd></div>
+          <div><dt>Liveness</dt><dd>Checking that a real, present person is in front of the camera, not a photo, for example by asking them to blink and turn.</dd></div>
+          <div><dt>Red-teaming</dt><dd>Attacking your own system on purpose, to find its weaknesses before someone else does.</dd></div>
+          <div><dt>CERT-In</dt><dd>India's national computer emergency response team. Certain cyber incidents must be reported to it within six hours.</dd></div>
+          <div><dt>DPDP</dt><dd>India's Digital Personal Data Protection Act, 2023, and its 2025 Rules: the law on how organisations handle personal data.</dd></div>
+          <div><dt>OWASP, MITRE ATLAS, NIST AI RMF</dt><dd>Three widely used catalogues and frameworks of AI risks and controls. Using them means an incident can be described in terms other professionals recognise.</dd></div>
+          <div><dt>Rate limiting</dt><dd>Slowing down anyone who sends too many requests, to protect a website from floods.</dd></div>
+          <div><dt>Revision vs rounding</dt><dd>A revision is when a published number is changed. Rounding is when two numbers differ only because each was rounded separately. Telling them apart is half of Kanakku.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="big">Shyam <em>Kumar</em>.</p>
+    <div class="row">
+      <div class="links">
+        <a class="btn acc" href="./">Back to the portfolio <span class="arr">→</span></a>
+        <a class="btn ghost" href="Shyam_Kumar_Resume.pdf" target="_blank" rel="noopener">Résumé <span class="arr">↗</span></a>
+      </div>
+      <small>Second-year CSE, Rajalakshmi Engineering College, Chennai · 2026</small>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

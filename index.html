@@ -3,274 +3,283 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.open-meteo.com; manifest-src 'self'; object-src 'none'; frame-src 'none'; worker-src 'none'; media-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Shyam Kumar · AI red-teaming & governance</title>
-<meta name="description" content="Shyam Kumar, CSE student at Rajalakshmi Engineering College, Chennai: testing how AI systems fail, with an attacker and without one, and building the controls that hold. Kaaval, Pathivu, Kaappu, FairDoor, AquaNXT, UpAid, Virasat.">
-<meta name="theme-color" content="#e8e1d3">
+<meta name="description" content="Shyam Kumar, CSE student at Rajalakshmi Engineering College, Chennai. I test how AI systems fail, with an attacker and without one, and build the controls that hold. Eleven projects, each one live.">
+<meta name="theme-color" content="#ece6da">
 <meta property="og:title" content="Shyam Kumar · AI red-teaming & governance">
-<meta property="og:description" content="AI red-teaming, agent safety and AI governance. Nine projects, all live: Kaaval, Pathivu, Mugam, Kaappu, Stewards' Room, FairDoor, AquaNXT, UpAid and Virasat, each with a working demo you can try in your browser.">
-<meta property="og:image" content="https://shyamvasansathiskumar-ux.github.io/og.png?v=2">
+<meta property="og:description" content="Eleven projects in AI safety, security and public accountability. Every claim links to something you can run.">
+<meta property="og:image" content="https://shyamvasansathiskumar-ux.github.io/og.png?v=7">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="627">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://shyamvasansathiskumar-ux.github.io/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://shyamvasansathiskumar-ux.github.io/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2315120e'/%3E%3Ctext x='32' y='44' font-family='Georgia' font-size='34' fill='%23e8e1d3' text-anchor='middle' font-style='italic'%3ES%3C/text%3E%3C/svg%3E">
-<link rel="preload" href="cormorant.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="geist.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="base.css">
-<link rel="stylesheet" href="site.css">
-<script>document.documentElement.classList.add("js")</script>
-<script type="importmap">{ "imports": { "three": "./three.module.min.js" } }</script>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/tiktok-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/newsreader-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/departure-mono.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css?v=2c1ee0b0e4" integrity="sha384-a/PKg/ydbpu/7ElshwT9JGorILn+tX7DZcENc29RYyVyLJ8pEypNempssYYsDicN">
+<script src="assets/js/boot.js?v=e3e8358356" integrity="sha384-7D/4tnrGGjMrPAVwb4NeKbhHI6Np0vAu/Vg7a46xPUVUGm7fdMYYyG9/lEGRIh+9"></script>
 </head>
 <body>
-<div class="loader" aria-hidden="true">
-  <div class="who"><span class="label bare">Shyam Kumar</span><span class="label bare">Chennai · 2026</span></div>
-  <div class="mid"><div class="bar"><i></i></div><div class="meta"><span class="label bare">Loading</span><span class="label bare pct"><b>00</b>%</span></div></div>
-</div>
-<canvas id="world" aria-hidden="true"></canvas>
-<ol class="rail" aria-label="Chapters"></ol>
 
-<header class="nav">
-  <div class="wrap">
-    <a class="brand" href="#top"><span class="dot"></span>Shyam Kumar</a>
-    <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#credentials">Credentials</a></li>
-      <li><a href="#about">About</a></li>
-    </ul>
-    <a class="btn sm ghost" href="Shyam_Kumar_Resume.pdf" target="_blank" rel="noopener">Résumé <span class="arr">↗</span></a>
+<!-- shared paint for the glass emblems -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gl" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".92"/><stop offset=".55" stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+    <linearGradient id="gk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a332b"/><stop offset="1" stop-color="#1d1a16"/></linearGradient>
+  </defs>
+</svg>
+
+<!-- the colour behind the glass: slow clouds and paper grain -->
+<div class="sky" aria-hidden="true"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><i class="c5"></i></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="world" id="world" aria-hidden="true"></div>
+
+<!-- opening: the name signs itself while the page checks its files -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="ld-in">
+    <svg class="ld-sig" viewBox="-60 -680 2620 1130"><path d="M161 55Q114 55 75.0 43.5Q36 32 13.0 5.5Q-10 -21 -10 -67Q-10 -106 10.0 -141.0Q30 -176 64.0 -203.0Q98 -230 139 -243Q155 -248 175.5 -252.5Q196 -257 212 -257Q228 -257 228 -242Q228 -231 215 -228Q199 -224 182.5 -222.5Q166 -221 149 -216Q115 -205 85.5 -182.5Q56 -160 38.5 -130.5Q21 -101 21 -68Q21 -31 41.0 -10.0Q61 11 93.0 20.0Q125 29 162 29Q214 29 277.5 15.5Q341 2 406.0 -23.0Q471 -48 529.0 -82.0Q587 -116 629.0 -157.0Q671 -198 687 -244Q690 -252 692.0 -261.0Q694 -270 694 -279Q694 -307 679.5 -322.5Q665 -338 641.5 -345.5Q618 -353 591.5 -355.0Q565 -357 541 -357Q489 -357 436.5 -352.5Q384 -348 331 -348Q301 -348 268.0 -353.0Q235 -358 212.5 -374.0Q190 -390 190 -423Q190 -466 217.0 -499.0Q244 -532 288.5 -556.0Q333 -580 385.5 -595.5Q438 -611 489.0 -618.0Q540 -625 580 -625Q603 -625 633.0 -622.5Q663 -620 691.5 -612.0Q720 -604 738.5 -587.5Q757 -571 757 -544Q757 -522 746.0 -512.0Q735 -502 717 -489Q715 -488 712.5 -486.5Q710 -485 706 -485Q700 -485 694.5 -489.5Q689 -494 689 -500Q689 -509 698.0 -513.0Q707 -517 715.5 -523.0Q724 -529 724 -544Q724 -562 707.5 -572.5Q691 -583 666.5 -588.0Q642 -593 618.5 -594.5Q595 -596 580 -596Q547 -596 504.0 -590.5Q461 -585 415.5 -573.5Q370 -562 329.5 -544.0Q289 -526 261.5 -500.5Q234 -475 226 -441Q225 -437 224.5 -433.5Q224 -430 224 -426Q224 -402 243.0 -391.5Q262 -381 288.0 -379.0Q314 -377 334 -377Q387 -377 439.0 -381.0Q491 -385 543 -385Q574 -385 606.5 -381.5Q639 -378 666.5 -367.5Q694 -357 711.0 -336.5Q728 -316 728 -282Q728 -260 719 -237Q701 -186 657.0 -141.5Q613 -97 552.0 -61.0Q491 -25 422.5 1.0Q354 27 286.5 41.0Q219 55 161 55Z M948 7Q923 7 904.5 -7.0Q886 -21 886 -49Q886 -88 907.0 -131.0Q928 -174 958.0 -214.5Q988 -255 1014 -286Q1030 -303 1030 -315Q1030 -324 1021 -325Q1018 -326 1013 -326Q991 -326 969.0 -310.0Q947 -294 933 -283Q887 -247 844.0 -199.0Q801 -151 773 -111Q763 -96 756.0 -74.5Q749 -53 743.5 -34.0Q738 -15 731 -7Q721 5 709 5Q700 5 694.0 -1.5Q688 -8 688 -18Q688 -24 689 -27Q701 -74 720.5 -130.5Q740 -187 762.5 -242.5Q785 -298 806 -342Q821 -374 841.5 -414.5Q862 -455 888.5 -495.5Q915 -536 947.5 -568.0Q980 -600 1019 -615Q1034 -621 1049 -621Q1069 -621 1083.5 -611.0Q1098 -601 1098 -578Q1098 -556 1082.0 -527.5Q1066 -499 1042.0 -470.0Q1018 -441 993.0 -416.0Q968 -391 949 -375Q905 -339 865.5 -308.0Q826 -277 799 -244Q781 -194 774 -161Q802 -199 842.0 -238.5Q882 -278 917 -305Q936 -320 964.0 -338.0Q992 -356 1020 -356Q1040 -356 1052.0 -346.0Q1064 -336 1064 -319Q1064 -296 1041 -269Q1018 -242 990.5 -203.0Q963 -164 943.5 -124.0Q924 -84 924 -51Q924 -35 933.0 -28.0Q942 -21 954 -21Q972 -21 987 -33Q1012 -52 1033.5 -78.0Q1055 -104 1073.0 -130.0Q1091 -156 1104 -175Q1114 -191 1127 -191Q1137 -191 1137 -180Q1137 -177 1136.0 -173.0Q1135 -169 1132 -164Q1118 -139 1095.5 -109.0Q1073 -79 1050.0 -52.5Q1027 -26 1008 -13Q982 7 948 7ZM1032 -592Q1001 -580 971.5 -550.0Q942 -520 914.5 -478.0Q887 -436 863.0 -389.5Q839 -343 820 -298Q853 -328 879.5 -349.0Q906 -370 932 -393Q955 -413 981.5 -442.5Q1008 -472 1030.5 -504.0Q1053 -536 1062 -563Q1064 -568 1065.0 -572.5Q1066 -577 1066 -580Q1066 -596 1050 -596Q1046 -596 1041.5 -595.0Q1037 -594 1032 -592Z M962 373Q928 373 908.5 355.5Q889 338 889 311Q889 287 910.0 258.0Q931 229 976 194Q991 182 1024.5 160.5Q1058 139 1100.5 113.0Q1143 87 1184.5 62.0Q1226 37 1259.0 17.5Q1292 -2 1306 -11Q1315 -35 1319.0 -63.5Q1323 -92 1323.5 -115.5Q1324 -139 1323 -150Q1311 -122 1286.5 -89.5Q1262 -57 1230 -25Q1211 -6 1186.5 6.5Q1162 19 1139 19Q1117 19 1102.5 4.0Q1088 -11 1088 -46Q1088 -69 1093.0 -92.0Q1098 -115 1104.5 -132.0Q1111 -149 1114 -153Q1109 -160 1109 -168Q1109 -186 1122.5 -210.0Q1136 -234 1151.5 -254.0Q1167 -274 1171 -281Q1173 -285 1179.5 -287.5Q1186 -290 1191 -290Q1198 -290 1203.5 -286.0Q1209 -282 1209 -276Q1209 -274 1207 -270Q1173 -212 1146.5 -153.5Q1120 -95 1120 -46Q1120 -27 1127.0 -19.5Q1134 -12 1144 -12Q1161 -12 1181.0 -25.0Q1201 -38 1212 -50Q1249 -88 1277.0 -133.0Q1305 -178 1317 -203Q1320 -211 1327.5 -221.5Q1335 -232 1347 -232Q1358 -232 1360.5 -222.5Q1363 -213 1363 -193Q1363 -147 1359.5 -109.0Q1356 -71 1351 -45Q1385 -73 1413.5 -112.5Q1442 -152 1465 -187Q1470 -195 1478 -195Q1483 -195 1487.5 -191.0Q1492 -187 1492 -181Q1492 -177 1489 -171Q1458 -121 1423.0 -75.5Q1388 -30 1335 5Q1307 85 1258.5 156.5Q1210 228 1151.5 280.5Q1093 333 1034 357Q996 373 962 373ZM962 348Q974 348 988.0 344.0Q1002 340 1017 334Q1076 308 1125.5 264.0Q1175 220 1212 169Q1237 134 1256.0 96.5Q1275 59 1286 39Q1268 49 1237.5 67.0Q1207 85 1170.5 107.0Q1134 129 1098.5 151.0Q1063 173 1034.5 191.5Q1006 210 992 221Q960 246 941.5 268.5Q923 291 923 311Q923 327 933.0 337.5Q943 348 962 348Z M1482 4Q1449 4 1436.5 -13.5Q1424 -31 1424 -56Q1424 -80 1432.0 -106.0Q1440 -132 1449.5 -154.5Q1459 -177 1465 -188Q1483 -219 1505.5 -248.0Q1528 -277 1554 -299Q1580 -322 1607.5 -334.5Q1635 -347 1663 -347Q1711 -347 1731.0 -321.5Q1751 -296 1751 -267Q1751 -257 1748 -246Q1744 -231 1738.5 -220.0Q1733 -209 1725 -209Q1718 -209 1712.0 -216.0Q1706 -223 1708 -230Q1710 -237 1713.5 -244.0Q1717 -251 1718 -258Q1719 -263 1719.5 -267.0Q1720 -271 1720 -275Q1720 -302 1702.5 -312.5Q1685 -323 1665 -323Q1642 -323 1617.5 -310.0Q1593 -297 1575 -280Q1553 -258 1531.0 -229.0Q1509 -200 1493 -170Q1491 -165 1482.5 -146.0Q1474 -127 1466.5 -103.5Q1459 -80 1459 -60Q1459 -46 1465.5 -36.0Q1472 -26 1488 -26Q1505 -26 1527.5 -42.0Q1550 -58 1573.5 -81.5Q1597 -105 1616.0 -127.0Q1635 -149 1644 -161Q1650 -169 1655.5 -178.5Q1661 -188 1667 -196Q1670 -200 1679 -200Q1687 -200 1695.5 -195.5Q1704 -191 1702 -183Q1698 -176 1687.5 -152.5Q1677 -129 1668.0 -101.5Q1659 -74 1659 -53Q1659 -27 1675 -23Q1686 -21 1698.5 -31.0Q1711 -41 1721.5 -54.0Q1732 -67 1737 -73Q1758 -101 1776.5 -130.5Q1795 -160 1814 -186Q1820 -194 1828 -194Q1842 -194 1842 -179Q1842 -174 1829.0 -153.5Q1816 -133 1797.5 -107.0Q1779 -81 1763 -60Q1747 -39 1727.0 -19.0Q1707 1 1676 1Q1647 1 1636.5 -12.0Q1626 -25 1626 -41Q1626 -55 1629.0 -70.5Q1632 -86 1635 -97L1631 -100Q1622 -89 1604.0 -72.0Q1586 -55 1564.0 -37.5Q1542 -20 1520.5 -8.0Q1499 4 1482 4Z M1873 18Q1868 18 1862.0 15.0Q1856 12 1856 7Q1856 4 1857.0 0.0Q1858 -4 1859 -7Q1870 -32 1890.0 -71.0Q1910 -110 1932.0 -153.5Q1954 -197 1969.0 -234.0Q1984 -271 1984 -291Q1984 -297 1981.5 -302.5Q1979 -308 1971 -308Q1958 -308 1940.5 -295.5Q1923 -283 1905 -262Q1895 -250 1879.0 -227.5Q1863 -205 1846.0 -179.5Q1829 -154 1814.5 -132.0Q1800 -110 1792 -101Q1785 -91 1775 -91Q1768 -91 1764.5 -96.0Q1761 -101 1765 -108Q1773 -123 1789.5 -148.0Q1806 -173 1824.0 -200.0Q1842 -227 1857.0 -248.0Q1872 -269 1876 -275Q1893 -297 1917.5 -317.0Q1942 -337 1974 -337Q2020 -337 2020 -296Q2020 -277 2011.0 -252.0Q2002 -227 1985 -194Q2017 -227 2040.5 -248.0Q2064 -269 2087 -287Q2110 -306 2135 -306Q2156 -306 2170.5 -291.0Q2185 -276 2185 -247Q2185 -238 2183.5 -226.5Q2182 -215 2177 -195Q2211 -232 2249.5 -260.0Q2288 -288 2321.5 -306.5Q2355 -325 2374 -330Q2384 -333 2393.5 -335.0Q2403 -337 2411 -337Q2421 -337 2427.0 -332.0Q2433 -327 2433 -313Q2433 -299 2415.0 -273.5Q2397 -248 2371.5 -215.5Q2346 -183 2323.0 -150.0Q2300 -117 2290 -88Q2285 -71 2285 -63Q2285 -36 2310 -36Q2327 -36 2351 -52Q2377 -69 2407.0 -107.0Q2437 -145 2463 -185Q2469 -194 2479 -194Q2486 -194 2488.0 -190.5Q2490 -187 2490 -184Q2490 -179 2480.5 -160.0Q2471 -141 2449 -112Q2421 -75 2398.5 -53.5Q2376 -32 2362 -24Q2349 -16 2335.0 -12.5Q2321 -9 2307 -9Q2275 -9 2261.0 -22.5Q2247 -36 2247 -55Q2247 -81 2264.5 -114.0Q2282 -147 2306.0 -180.5Q2330 -214 2351.5 -241.0Q2373 -268 2381 -280Q2385 -285 2385 -290Q2385 -298 2374 -298Q2368 -298 2360 -295Q2319 -278 2279.0 -248.5Q2239 -219 2207.5 -189.0Q2176 -159 2159 -139Q2155 -125 2148.0 -101.5Q2141 -78 2129.0 -60.0Q2117 -42 2098 -42Q2089 -42 2083.5 -48.5Q2078 -55 2078 -62Q2078 -88 2094.0 -110.0Q2110 -132 2131 -151Q2136 -168 2145.0 -195.5Q2154 -223 2154 -242Q2154 -258 2146.5 -267.0Q2139 -276 2128 -276Q2115 -276 2102 -266Q2053 -232 2015.0 -182.5Q1977 -133 1947 -86Q1931 -63 1917.5 -38.0Q1904 -13 1888 10Q1885 14 1882.0 16.0Q1879 18 1873 18Z"/></svg>
+    <div class="ld-row pix"><span id="ldStep">LOADING TYPE</span><span><b id="ldPct">000</b> %</span></div>
+    <div class="ld-bar"><i id="ldBar"></i></div>
+    <ul class="ld-list pix" id="ldList"></ul>
   </div>
+</div>
+
+<!-- the frame -->
+<header class="hud" id="hud">
+  <a class="hud-brand" href="#top" data-snd>SHYAM.KUMAR <span class="ta">ஷ்யாம்</span></a>
+  <div class="hud-row bot">
+    <span class="hud-loc">GMT+5:30 IN <b id="clock">--:--</b> <b id="wx">--°C</b></span>
+    <span class="hud-xy"><span id="cx">0000</span> X <span id="cy">0000</span> Y</span>
+    <span class="hud-globe" aria-hidden="true"><svg viewBox="0 0 32 20" width="30" height="19" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="16" cy="10" rx="14.5" ry="8.6"/><ellipse class="mer" cx="16" cy="10" rx="6.2" ry="8.6"/><path d="M1.5 10h29M4 5.2h24M4 14.8h24"/></svg></span>
+  </div>
+  <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
 </header>
 
+<nav class="nav glass" id="nav" aria-label="Sections">
+  <a href="#work" data-snd>Work</a>
+  <a href="#research" data-snd>Research</a>
+  <a href="#about" data-snd>About</a>
+  <a href="#contact" data-snd>Contact</a>
+  <a href="Shyam_Kumar_Resume.pdf" target="_blank" rel="noopener" data-snd>CV&nbsp;↗</a>
+  <button type="button" id="soundBtn" data-snd aria-label="Toggle sound" aria-pressed="false">SOUND[<b id="soundV">–</b>]</button>
+</nav>
+<button type="button" class="menu glass" id="menuBtn" aria-expanded="false" aria-controls="sheet">MENU</button>
+<div class="sheet" id="sheet" hidden>
+  <a href="#work">Work</a><a href="#research">Research</a><a href="#about">About</a><a href="#contact">Contact</a><a href="Shyam_Kumar_Resume.pdf" target="_blank" rel="noopener">CV ↗</a>
+  <p class="pix"><button type="button" id="soundBtn2">SOUND</button></p>
+</div>
+
+<div class="rule" id="rule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<nav class="rail" id="rail" aria-label="Page sections"></nav>
+<div class="meter" id="meter" aria-hidden="true"><i></i><span class="pix" id="sp">000</span></div>
+
 <main id="top">
-  <!-- 00 · hero -->
-  <section class="hero" id="hero" data-stage="0" data-chapter="Hello">
-    <div class="wrap hero-in">
-      <p class="label" data-intro>AI security · AI governance · Chennai</p>
-      <h1 class="display hero-title" data-intro-split>Shyam <em>Kumar</em></h1>
-      <p class="hero-sub" data-intro>Red-teaming AI. <em>Then saying what to do about it.</em></p>
-      <div class="hero-foot">
-        <p class="lede" data-intro>Second-year CSE at Rajalakshmi Engineering College. I test how AI systems fail, with an attacker and without one, and build the controls that hold when they do. <strong>Every project below runs in your browser.</strong></p>
-      </div>
-      <div class="hero-cta" data-intro>
-        <a class="btn acc" href="#work">See the work <span class="arr">→</span></a>
-        <a class="btn ghost" href="mailto:shyamvasansathiskumar@gmail.com">Email me</a>
-      </div>
+
+  <!-- 01 first screen -->
+  <section class="hero" id="hero" data-rail="Hello">
+    <div class="hero-top">
+      <p class="ht-a">AI Security<br>&amp; Governance</p>
+      <p class="ht-b mono">Break it on purpose.<br>Write down what to fix.</p>
+      <p class="ht-c mono">Second-year computer science, Chennai. Press and hold anywhere: one record leaves the chain, the way a forged entry breaks a hash chain.</p>
     </div>
-    <div class="wrap hero-meta" data-intro>
-      <span class="label bare">9 projects</span><span class="label bare">7 live tools</span><span class="label bare">All public, all checkable</span><span class="label bare scroll-cue">Scroll</span>
+    <div class="chips" aria-hidden="true">
+      <span class="chip glass c-a"><i class="dot"></i>Open to internships · 2027</span>
+      <span class="chip glass c-b">11 projects · all live</span>
+    </div>
+    <h1 class="hero-t" id="heroT">
+      <span class="ln">Red-teaming AI.</span>
+      <span class="ln">Then saying <em>what</em></span>
+      <span class="ln"><em>to do about it.</em></span>
+    </h1>
+    <a class="scroll-cue pix" href="#intro" data-snd><span>SCROLL</span><i></i></a>
+  </section>
+
+  <!-- 02 who -->
+  <section class="intro" id="intro" data-rail="Who">
+    <figure class="me" id="me">
+      <div class="ph glass"><img src="assets/img/shyam.webp" width="720" height="900" alt="Shyam Kumar" decoding="async"></div>
+      <svg class="sig" viewBox="-60 -680 2620 1130" aria-hidden="true" focusable="false">
+        <path class="sig-n" d="M161 55Q114 55 75.0 43.5Q36 32 13.0 5.5Q-10 -21 -10 -67Q-10 -106 10.0 -141.0Q30 -176 64.0 -203.0Q98 -230 139 -243Q155 -248 175.5 -252.5Q196 -257 212 -257Q228 -257 228 -242Q228 -231 215 -228Q199 -224 182.5 -222.5Q166 -221 149 -216Q115 -205 85.5 -182.5Q56 -160 38.5 -130.5Q21 -101 21 -68Q21 -31 41.0 -10.0Q61 11 93.0 20.0Q125 29 162 29Q214 29 277.5 15.5Q341 2 406.0 -23.0Q471 -48 529.0 -82.0Q587 -116 629.0 -157.0Q671 -198 687 -244Q690 -252 692.0 -261.0Q694 -270 694 -279Q694 -307 679.5 -322.5Q665 -338 641.5 -345.5Q618 -353 591.5 -355.0Q565 -357 541 -357Q489 -357 436.5 -352.5Q384 -348 331 -348Q301 -348 268.0 -353.0Q235 -358 212.5 -374.0Q190 -390 190 -423Q190 -466 217.0 -499.0Q244 -532 288.5 -556.0Q333 -580 385.5 -595.5Q438 -611 489.0 -618.0Q540 -625 580 -625Q603 -625 633.0 -622.5Q663 -620 691.5 -612.0Q720 -604 738.5 -587.5Q757 -571 757 -544Q757 -522 746.0 -512.0Q735 -502 717 -489Q715 -488 712.5 -486.5Q710 -485 706 -485Q700 -485 694.5 -489.5Q689 -494 689 -500Q689 -509 698.0 -513.0Q707 -517 715.5 -523.0Q724 -529 724 -544Q724 -562 707.5 -572.5Q691 -583 666.5 -588.0Q642 -593 618.5 -594.5Q595 -596 580 -596Q547 -596 504.0 -590.5Q461 -585 415.5 -573.5Q370 -562 329.5 -544.0Q289 -526 261.5 -500.5Q234 -475 226 -441Q225 -437 224.5 -433.5Q224 -430 224 -426Q224 -402 243.0 -391.5Q262 -381 288.0 -379.0Q314 -377 334 -377Q387 -377 439.0 -381.0Q491 -385 543 -385Q574 -385 606.5 -381.5Q639 -378 666.5 -367.5Q694 -357 711.0 -336.5Q728 -316 728 -282Q728 -260 719 -237Q701 -186 657.0 -141.5Q613 -97 552.0 -61.0Q491 -25 422.5 1.0Q354 27 286.5 41.0Q219 55 161 55Z M948 7Q923 7 904.5 -7.0Q886 -21 886 -49Q886 -88 907.0 -131.0Q928 -174 958.0 -214.5Q988 -255 1014 -286Q1030 -303 1030 -315Q1030 -324 1021 -325Q1018 -326 1013 -326Q991 -326 969.0 -310.0Q947 -294 933 -283Q887 -247 844.0 -199.0Q801 -151 773 -111Q763 -96 756.0 -74.5Q749 -53 743.5 -34.0Q738 -15 731 -7Q721 5 709 5Q700 5 694.0 -1.5Q688 -8 688 -18Q688 -24 689 -27Q701 -74 720.5 -130.5Q740 -187 762.5 -242.5Q785 -298 806 -342Q821 -374 841.5 -414.5Q862 -455 888.5 -495.5Q915 -536 947.5 -568.0Q980 -600 1019 -615Q1034 -621 1049 -621Q1069 -621 1083.5 -611.0Q1098 -601 1098 -578Q1098 -556 1082.0 -527.5Q1066 -499 1042.0 -470.0Q1018 -441 993.0 -416.0Q968 -391 949 -375Q905 -339 865.5 -308.0Q826 -277 799 -244Q781 -194 774 -161Q802 -199 842.0 -238.5Q882 -278 917 -305Q936 -320 964.0 -338.0Q992 -356 1020 -356Q1040 -356 1052.0 -346.0Q1064 -336 1064 -319Q1064 -296 1041 -269Q1018 -242 990.5 -203.0Q963 -164 943.5 -124.0Q924 -84 924 -51Q924 -35 933.0 -28.0Q942 -21 954 -21Q972 -21 987 -33Q1012 -52 1033.5 -78.0Q1055 -104 1073.0 -130.0Q1091 -156 1104 -175Q1114 -191 1127 -191Q1137 -191 1137 -180Q1137 -177 1136.0 -173.0Q1135 -169 1132 -164Q1118 -139 1095.5 -109.0Q1073 -79 1050.0 -52.5Q1027 -26 1008 -13Q982 7 948 7ZM1032 -592Q1001 -580 971.5 -550.0Q942 -520 914.5 -478.0Q887 -436 863.0 -389.5Q839 -343 820 -298Q853 -328 879.5 -349.0Q906 -370 932 -393Q955 -413 981.5 -442.5Q1008 -472 1030.5 -504.0Q1053 -536 1062 -563Q1064 -568 1065.0 -572.5Q1066 -577 1066 -580Q1066 -596 1050 -596Q1046 -596 1041.5 -595.0Q1037 -594 1032 -592Z M962 373Q928 373 908.5 355.5Q889 338 889 311Q889 287 910.0 258.0Q931 229 976 194Q991 182 1024.5 160.5Q1058 139 1100.5 113.0Q1143 87 1184.5 62.0Q1226 37 1259.0 17.5Q1292 -2 1306 -11Q1315 -35 1319.0 -63.5Q1323 -92 1323.5 -115.5Q1324 -139 1323 -150Q1311 -122 1286.5 -89.5Q1262 -57 1230 -25Q1211 -6 1186.5 6.5Q1162 19 1139 19Q1117 19 1102.5 4.0Q1088 -11 1088 -46Q1088 -69 1093.0 -92.0Q1098 -115 1104.5 -132.0Q1111 -149 1114 -153Q1109 -160 1109 -168Q1109 -186 1122.5 -210.0Q1136 -234 1151.5 -254.0Q1167 -274 1171 -281Q1173 -285 1179.5 -287.5Q1186 -290 1191 -290Q1198 -290 1203.5 -286.0Q1209 -282 1209 -276Q1209 -274 1207 -270Q1173 -212 1146.5 -153.5Q1120 -95 1120 -46Q1120 -27 1127.0 -19.5Q1134 -12 1144 -12Q1161 -12 1181.0 -25.0Q1201 -38 1212 -50Q1249 -88 1277.0 -133.0Q1305 -178 1317 -203Q1320 -211 1327.5 -221.5Q1335 -232 1347 -232Q1358 -232 1360.5 -222.5Q1363 -213 1363 -193Q1363 -147 1359.5 -109.0Q1356 -71 1351 -45Q1385 -73 1413.5 -112.5Q1442 -152 1465 -187Q1470 -195 1478 -195Q1483 -195 1487.5 -191.0Q1492 -187 1492 -181Q1492 -177 1489 -171Q1458 -121 1423.0 -75.5Q1388 -30 1335 5Q1307 85 1258.5 156.5Q1210 228 1151.5 280.5Q1093 333 1034 357Q996 373 962 373ZM962 348Q974 348 988.0 344.0Q1002 340 1017 334Q1076 308 1125.5 264.0Q1175 220 1212 169Q1237 134 1256.0 96.5Q1275 59 1286 39Q1268 49 1237.5 67.0Q1207 85 1170.5 107.0Q1134 129 1098.5 151.0Q1063 173 1034.5 191.5Q1006 210 992 221Q960 246 941.5 268.5Q923 291 923 311Q923 327 933.0 337.5Q943 348 962 348Z M1482 4Q1449 4 1436.5 -13.5Q1424 -31 1424 -56Q1424 -80 1432.0 -106.0Q1440 -132 1449.5 -154.5Q1459 -177 1465 -188Q1483 -219 1505.5 -248.0Q1528 -277 1554 -299Q1580 -322 1607.5 -334.5Q1635 -347 1663 -347Q1711 -347 1731.0 -321.5Q1751 -296 1751 -267Q1751 -257 1748 -246Q1744 -231 1738.5 -220.0Q1733 -209 1725 -209Q1718 -209 1712.0 -216.0Q1706 -223 1708 -230Q1710 -237 1713.5 -244.0Q1717 -251 1718 -258Q1719 -263 1719.5 -267.0Q1720 -271 1720 -275Q1720 -302 1702.5 -312.5Q1685 -323 1665 -323Q1642 -323 1617.5 -310.0Q1593 -297 1575 -280Q1553 -258 1531.0 -229.0Q1509 -200 1493 -170Q1491 -165 1482.5 -146.0Q1474 -127 1466.5 -103.5Q1459 -80 1459 -60Q1459 -46 1465.5 -36.0Q1472 -26 1488 -26Q1505 -26 1527.5 -42.0Q1550 -58 1573.5 -81.5Q1597 -105 1616.0 -127.0Q1635 -149 1644 -161Q1650 -169 1655.5 -178.5Q1661 -188 1667 -196Q1670 -200 1679 -200Q1687 -200 1695.5 -195.5Q1704 -191 1702 -183Q1698 -176 1687.5 -152.5Q1677 -129 1668.0 -101.5Q1659 -74 1659 -53Q1659 -27 1675 -23Q1686 -21 1698.5 -31.0Q1711 -41 1721.5 -54.0Q1732 -67 1737 -73Q1758 -101 1776.5 -130.5Q1795 -160 1814 -186Q1820 -194 1828 -194Q1842 -194 1842 -179Q1842 -174 1829.0 -153.5Q1816 -133 1797.5 -107.0Q1779 -81 1763 -60Q1747 -39 1727.0 -19.0Q1707 1 1676 1Q1647 1 1636.5 -12.0Q1626 -25 1626 -41Q1626 -55 1629.0 -70.5Q1632 -86 1635 -97L1631 -100Q1622 -89 1604.0 -72.0Q1586 -55 1564.0 -37.5Q1542 -20 1520.5 -8.0Q1499 4 1482 4Z M1873 18Q1868 18 1862.0 15.0Q1856 12 1856 7Q1856 4 1857.0 0.0Q1858 -4 1859 -7Q1870 -32 1890.0 -71.0Q1910 -110 1932.0 -153.5Q1954 -197 1969.0 -234.0Q1984 -271 1984 -291Q1984 -297 1981.5 -302.5Q1979 -308 1971 -308Q1958 -308 1940.5 -295.5Q1923 -283 1905 -262Q1895 -250 1879.0 -227.5Q1863 -205 1846.0 -179.5Q1829 -154 1814.5 -132.0Q1800 -110 1792 -101Q1785 -91 1775 -91Q1768 -91 1764.5 -96.0Q1761 -101 1765 -108Q1773 -123 1789.5 -148.0Q1806 -173 1824.0 -200.0Q1842 -227 1857.0 -248.0Q1872 -269 1876 -275Q1893 -297 1917.5 -317.0Q1942 -337 1974 -337Q2020 -337 2020 -296Q2020 -277 2011.0 -252.0Q2002 -227 1985 -194Q2017 -227 2040.5 -248.0Q2064 -269 2087 -287Q2110 -306 2135 -306Q2156 -306 2170.5 -291.0Q2185 -276 2185 -247Q2185 -238 2183.5 -226.5Q2182 -215 2177 -195Q2211 -232 2249.5 -260.0Q2288 -288 2321.5 -306.5Q2355 -325 2374 -330Q2384 -333 2393.5 -335.0Q2403 -337 2411 -337Q2421 -337 2427.0 -332.0Q2433 -327 2433 -313Q2433 -299 2415.0 -273.5Q2397 -248 2371.5 -215.5Q2346 -183 2323.0 -150.0Q2300 -117 2290 -88Q2285 -71 2285 -63Q2285 -36 2310 -36Q2327 -36 2351 -52Q2377 -69 2407.0 -107.0Q2437 -145 2463 -185Q2469 -194 2479 -194Q2486 -194 2488.0 -190.5Q2490 -187 2490 -184Q2490 -179 2480.5 -160.0Q2471 -141 2449 -112Q2421 -75 2398.5 -53.5Q2376 -32 2362 -24Q2349 -16 2335.0 -12.5Q2321 -9 2307 -9Q2275 -9 2261.0 -22.5Q2247 -36 2247 -55Q2247 -81 2264.5 -114.0Q2282 -147 2306.0 -180.5Q2330 -214 2351.5 -241.0Q2373 -268 2381 -280Q2385 -285 2385 -290Q2385 -298 2374 -298Q2368 -298 2360 -295Q2319 -278 2279.0 -248.5Q2239 -219 2207.5 -189.0Q2176 -159 2159 -139Q2155 -125 2148.0 -101.5Q2141 -78 2129.0 -60.0Q2117 -42 2098 -42Q2089 -42 2083.5 -48.5Q2078 -55 2078 -62Q2078 -88 2094.0 -110.0Q2110 -132 2131 -151Q2136 -168 2145.0 -195.5Q2154 -223 2154 -242Q2154 -258 2146.5 -267.0Q2139 -276 2128 -276Q2115 -276 2102 -266Q2053 -232 2015.0 -182.5Q1977 -133 1947 -86Q1931 -63 1917.5 -38.0Q1904 -13 1888 10Q1885 14 1882.0 16.0Q1879 18 1873 18Z"/>
+        <path class="sig-u" d="M 90 300 C 620 190 1500 150 2480 236 C 2180 250 1900 280 1700 330" pathLength="1"/>
+      </svg>
+      <figcaption class="pix">Shyam Kumar · Chennai, India</figcaption>
+    </figure>
+    <div class="say">
+      <p class="say-1 fill" id="say1">I test how AI systems fail, <em>with an attacker and without one,</em> and build the controls that hold when they do.</p>
+      <p class="say-2">So far: <a class="lk" href="https://shyamvasansathiskumar-ux.github.io/kaaval/" target="_blank" rel="noopener" data-snd>a guard for coding agents</a>, <a class="lk" href="https://shyamvasansathiskumar-ux.github.io/pathivu/" target="_blank" rel="noopener" data-snd>an incident register that keeps the legal clock</a>, <a class="lk" href="https://shyamvasansathiskumar-ux.github.io/mugam/" target="_blank" rel="noopener" data-snd>a face sign-in that keeps your face</a> and <a class="lk" href="https://shyamvasansathiskumar-ux.github.io/kanakku/" target="_blank" rel="noopener" data-snd>an archive that notices when a public number changes</a>. Every one is live, and every number links to the code that produced it.</p>
+      <dl class="stats">
+        <div class="glass"><dt class="pix">Projects, all live</dt><dd data-count="11">11</dd></div>
+        <div class="glass"><dt class="pix">Tests in the repos</dt><dd data-count="600" data-suffix="+">600+</dd></div>
+        <div class="glass"><dt class="pix">Frameworks mapped</dt><dd data-count="5">5</dd></div>
+      </dl>
     </div>
   </section>
 
-  <!-- 01 · why -->
-  <section id="why" data-stage="1" data-chapter="Why">
-    <div class="wrap grid">
-      <div class="col-l"><p class="label" data-scramble>01 · Why this work</p></div>
-      <div class="col-r stack">
-        <h2 class="h1" data-split>AI breaks two ways. <em>Somebody breaks it, or it breaks things on its own.</em></h2>
-        <p class="body big" data-rise>Most security frameworks only model the first. My <a href="https://github.com/shyamvasansathiskumar-ux/ai-incident-atlas" target="_blank" rel="noopener">incident atlas</a> found six public cases where an AI agent destroyed real data with nobody attacking it: a production database, a home directory, a whole drive.</p>
-        <p class="body big" data-rise>So I work both sides. I attack models to see where they fail, and I write the controls and governance that hold when they do. The rule I keep coming back to: <em>telling an agent isn't locking it.</em></p>
-      </div>
+  <!-- what I work with, moving -->
+  <div class="band glass" aria-label="Areas and tools">
+    <div class="band-in" id="band">
+      <span>Red-teaming</span><b>✳</b><span>Agent safety</span><b>✳</b><span>OWASP LLM Top 10</span><b>✳</b><span>MITRE ATLAS</span><b>✳</b><span>NIST AI RMF</span><b>✳</b><span>DPDP Act</span><b>✳</b><span>CERT-In</span><b>✳</b><span>WebCrypto</span><b>✳</b><span>Java · Python · SQL</span><b>✳</b>
+    </div>
+  </div>
+
+  <!-- 03 work -->
+  <section class="work" id="work" data-rail="Work">
+    <header class="sec-h">
+      <p class="pix idx">01 / WORK</p>
+      <h2 class="h2" data-lines>Eleven things I built, <em>each one live.</em></h2>
+      <p class="note">Every poster opens the real project. Numbers come from its own tests.</p>
+    </header>
+
+    <div class="posters">
+      <a class="poster pk-kaaval w7" href="https://shyamvasansathiskumar-ux.github.io/kaaval/" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">Agent safety</span><span class="p-yr pix">2026 · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><path class="g" d="M100 26c26 11 44 12 60 10v58c0 42-28 68-60 80-32-12-60-38-60-80V36c16 2 34 1 60-10z"/><path class="k" d="M72 100l20 21 38-42" fill="none"/></svg>
+        <div class="p-cap glass"><span class="p-num">6/6</span><span class="p-unit pix">real incidents refused</span><h3>Kaaval <span class="ta">காவல்</span></h3><p>A guard between an AI coding agent and your shell.</p></div>
+      </a>
+
+      <a class="poster pk-pathivu w5" href="https://shyamvasansathiskumar-ux.github.io/pathivu/" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">AI governance</span><span class="p-yr pix">2026 · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><rect class="g" x="44" y="32" width="94" height="128" rx="10"/><path class="k" d="M62 62h58M62 82h58M62 102h40" fill="none"/><circle class="g" cx="140" cy="140" r="30"/><path class="k" d="M140 122v18l12 8" fill="none"/></svg>
+        <div class="p-cap glass"><span class="p-num">110</span><span class="p-unit pix">tests · 36 triggers</span><h3>Pathivu <span class="ta">பதிவு</span></h3><p>An AI incident register that keeps the CERT-In and DPDP clocks.</p></div>
+      </a>
+
+      <a class="poster pk-kanakku w4" href="https://shyamvasansathiskumar-ux.github.io/kanakku/" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">Public data · Research</span><span class="p-yr pix">2026 · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><rect class="g" x="18" y="80" width="74" height="40" rx="20"/><rect class="g" x="63" y="80" width="74" height="40" rx="20"/><rect class="g" x="108" y="80" width="74" height="40" rx="20"/><path class="k" d="M30 150h140" fill="none"/></svg>
+        <div class="p-cap glass"><span class="p-num">0</span><span class="p-unit pix">revisions in 59 RBI releases</span><h3>Kanakku <span class="ta">கணக்கு</span></h3><p>An archive that tells a revision from rounding.</p></div>
+      </a>
+
+      <a class="poster pk-mugam w4" href="https://shyamvasansathiskumar-ux.github.io/mugam/" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">Authentication</span><span class="p-yr pix">2026 · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><circle class="g" cx="100" cy="100" r="66"/><circle class="k-f" cx="76.0" cy="76.0" r="3.4"/><circle class="k-f" cx="76.0" cy="84.0" r="3.4"/><circle class="k-f" cx="76.0" cy="92.0" r="3.4"/><circle class="k-f" cx="76.0" cy="100.0" r="3.4"/><circle class="k-f" cx="76.0" cy="108.0" r="3.4"/><circle class="k-f" cx="76.0" cy="116.0" r="3.4"/><circle class="k-f" cx="76.0" cy="124.0" r="3.4"/><circle class="k-f" cx="84.0" cy="68.0" r="3.4"/><circle class="k-f" cx="84.0" cy="76.0" r="3.4"/><circle class="k-f" cx="84.0" cy="84.0" r="3.4"/><circle class="k-f" cx="84.0" cy="92.0" r="3.4"/><circle class="k-f" cx="84.0" cy="100.0" r="3.4"/><circle class="k-f" cx="84.0" cy="108.0" r="3.4"/><circle class="k-f" cx="84.0" cy="116.0" r="3.4"/><circle class="k-f" cx="84.0" cy="124.0" r="3.4"/><circle class="k-f" cx="84.0" cy="132.0" r="3.4"/><circle class="k-f" cx="92.0" cy="60.0" r="3.4"/><circle class="k-f" cx="92.0" cy="68.0" r="3.4"/><circle class="k-f" cx="92.0" cy="76.0" r="3.4"/><circle class="k-f" cx="92.0" cy="84.0" r="3.4"/><circle class="k-f" cx="92.0" cy="92.0" r="3.4"/><circle class="k-f" cx="92.0" cy="100.0" r="3.4"/><circle class="k-f" cx="92.0" cy="108.0" r="3.4"/><circle class="k-f" cx="92.0" cy="116.0" r="3.4"/><circle class="k-f" cx="92.0" cy="124.0" r="3.4"/><circle class="k-f" cx="92.0" cy="132.0" r="3.4"/><circle class="k-f" cx="92.0" cy="140.0" r="3.4"/><circle class="k-f" cx="100.0" cy="60.0" r="3.4"/><circle class="k-f" cx="100.0" cy="68.0" r="3.4"/><circle class="k-f" cx="100.0" cy="76.0" r="3.4"/><circle class="k-f" cx="100.0" cy="84.0" r="3.4"/><circle class="k-f" cx="100.0" cy="92.0" r="3.4"/><circle class="k-f" cx="100.0" cy="100.0" r="3.4"/><circle class="k-f" cx="100.0" cy="108.0" r="3.4"/><circle class="k-f" cx="100.0" cy="116.0" r="3.4"/><circle class="k-f" cx="100.0" cy="124.0" r="3.4"/><circle class="k-f" cx="100.0" cy="132.0" r="3.4"/><circle class="k-f" cx="100.0" cy="140.0" r="3.4"/><circle class="k-f" cx="108.0" cy="60.0" r="3.4"/><circle class="k-f" cx="108.0" cy="68.0" r="3.4"/><circle class="k-f" cx="108.0" cy="76.0" r="3.4"/><circle class="k-f" cx="108.0" cy="84.0" r="3.4"/><circle class="k-f" cx="108.0" cy="92.0" r="3.4"/><circle class="k-f" cx="108.0" cy="100.0" r="3.4"/><circle class="k-f" cx="108.0" cy="108.0" r="3.4"/><circle class="k-f" cx="108.0" cy="116.0" r="3.4"/><circle class="k-f" cx="108.0" cy="124.0" r="3.4"/><circle class="k-f" cx="108.0" cy="132.0" r="3.4"/><circle class="k-f" cx="108.0" cy="140.0" r="3.4"/><circle class="k-f" cx="116.0" cy="68.0" r="3.4"/><circle class="k-f" cx="116.0" cy="76.0" r="3.4"/><circle class="k-f" cx="116.0" cy="84.0" r="3.4"/><circle class="k-f" cx="116.0" cy="92.0" r="3.4"/><circle class="k-f" cx="116.0" cy="100.0" r="3.4"/><circle class="k-f" cx="116.0" cy="108.0" r="3.4"/><circle class="k-f" cx="116.0" cy="116.0" r="3.4"/><circle class="k-f" cx="116.0" cy="124.0" r="3.4"/><circle class="k-f" cx="116.0" cy="132.0" r="3.4"/><circle class="k-f" cx="124.0" cy="76.0" r="3.4"/><circle class="k-f" cx="124.0" cy="84.0" r="3.4"/><circle class="k-f" cx="124.0" cy="92.0" r="3.4"/><circle class="k-f" cx="124.0" cy="100.0" r="3.4"/><circle class="k-f" cx="124.0" cy="108.0" r="3.4"/><circle class="k-f" cx="124.0" cy="116.0" r="3.4"/><circle class="k-f" cx="124.0" cy="124.0" r="3.4"/></svg>
+        <div class="p-cap glass"><span class="p-num">0</span><span class="p-unit pix">face images sent to the server</span><h3>Mugam <span class="ta">முகம்</span></h3><p>Face sign-in where the face never leaves the device.</p></div>
+      </a>
+
+      <a class="poster pk-thavanai w4" href="https://shyamvasansathiskumar-ux.github.io/thavanai/" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">Data retention · Team</span><span class="p-yr pix">2026 · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><path class="g" d="M34 64h96l40 36-40 36H34z"/><circle class="k-f" cx="134" cy="100" r="7"/><path class="k" d="M54 88h46M54 104h30" fill="none"/><path class="k" d="M44 158h70" fill="none"/></svg>
+        <div class="p-cap glass"><span class="p-num">61</span><span class="p-unit pix">checks run in the page</span><h3>Thavanai <span class="ta">தவணை</span></h3><p>Makes a club delete personal data on its due date.</p></div>
+      </a>
+
+      <a class="poster pk-kaappu w4" href="https://shyamvasansathiskumar-ux.github.io/kaappu/" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">Cryptography</span><span class="p-yr pix">2026 · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><path class="k" d="M74 84V64a26 26 0 0 1 52 0v20" fill="none"/><rect class="g" x="56" y="84" width="88" height="66" rx="14"/><circle class="k-f" cx="100" cy="112" r="7"/><circle class="g" cx="60" cy="176" r="9"/><circle class="g" cx="100" cy="176" r="9"/><circle class="g" cx="140" cy="176" r="9"/></svg>
+        <div class="p-cap glass"><span class="p-num">2 of 3</span><span class="p-unit pix">shares rebuild the key</span><h3>Kaappu <span class="ta">காப்பு</span></h3><p>A 2FA vault you can't lose.</p></div>
+      </a>
+
+      <a class="poster pk-stewards w4" href="https://shyamvasansathiskumar-ux.github.io/stewards-room/" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">Data · Formula 1</span><span class="p-yr pix">2026 · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><path class="k" d="M52 40v130" fill="none"/><rect class="g" x="54" y="42" width="26" height="26"/><rect class="k-f" x="54" y="68" width="26" height="26"/><rect class="g" x="54" y="94" width="26" height="26"/><rect class="k-f" x="80" y="42" width="26" height="26"/><rect class="g" x="80" y="68" width="26" height="26"/><rect class="k-f" x="80" y="94" width="26" height="26"/><rect class="g" x="106" y="42" width="26" height="26"/><rect class="k-f" x="106" y="68" width="26" height="26"/><rect class="g" x="106" y="94" width="26" height="26"/><rect class="k-f" x="132" y="42" width="26" height="26"/><rect class="g" x="132" y="68" width="26" height="26"/><rect class="k-f" x="132" y="94" width="26" height="26"/></svg>
+        <div class="p-cap glass"><span class="p-num">2,629</span><span class="p-unit pix">FIA documents checked</span><h3>Stewards' Room</h3><p>Same offence, same penalty?</p></div>
+      </a>
+
+      <a class="poster pk-fairdoor w4" href="https://shyamvasansathiskumar-ux.github.io/fairdoor/" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">Systems</span><span class="p-yr pix">2026 · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><path class="g" d="M112 168V60a30 30 0 0 1 60 0v108z"/><circle class="g" cx="34" cy="150" r="9"/><circle class="g" cx="58" cy="150" r="9"/><circle class="g" cx="82" cy="150" r="9"/><circle class="k-f" cx="152" cy="118" r="5"/></svg>
+        <div class="p-cap glass"><span class="p-num">68.4 → 0</span><span class="p-unit pix">students locked out</span><h3>FairDoor</h3><p>Tells a deadline rush from a script flood.</p></div>
+      </a>
+
+      <a class="poster pk-aqua w4" href="https://shyamvasansathiskumar-ux.github.io/aquanxt/" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">Hardware · Venture</span><span class="p-yr pix">In progress · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><path class="g" d="M100 28c22 34 48 62 48 92a48 48 0 0 1-96 0c0-30 26-58 48-92z"/><path class="k" d="M72 128c10 8 20 8 28 0s18-8 28 0" fill="none"/></svg>
+        <div class="p-cap glass"><span class="p-num">3</span><span class="p-unit pix">filters, one brain</span><h3>AquaNXT <span class="ta">நீர்</span></h3><p>Water filters that report on themselves.</p></div>
+      </a>
+
+      <a class="poster pk-upaid w4" href="https://upaid-site.vercel.app" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">AI · Team</span><span class="p-yr pix">2026 · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><rect class="g" x="46" y="30" width="108" height="140" rx="12"/><path class="k" d="M66 64h68M66 84h68M66 124h44" fill="none"/><rect class="k-f hl" x="62" y="96" width="76" height="14" rx="4"/></svg>
+        <div class="p-cap glass"><span class="p-num">155</span><span class="p-unit pix">tests · quotes or nothing</span><h3>UpAid</h3><p>Financial-aid answers that only quote the source.</p></div>
+      </a>
+
+      <a class="poster pk-virasat w4" href="https://virasatweb-seven.vercel.app" target="_blank" rel="noopener" data-snd>
+        <span class="p-tag glass pix">Fintech · Team</span><span class="p-yr pix">2026 · ↗</span>
+        <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><ellipse class="g" cx="100" cy="146" rx="56" ry="16"/><ellipse class="g" cx="100" cy="122" rx="56" ry="16"/><ellipse class="g" cx="100" cy="98" rx="56" ry="16"/><ellipse class="g" cx="100" cy="74" rx="56" ry="16"/><path class="k" d="M100 30v20" fill="none"/></svg>
+        <div class="p-cap glass"><span class="p-num">1st</span><span class="p-unit pix">PEC Hacks 4.0 FinTech</span><h3>Virasat</h3><p>One family record across five regulators.</p></div>
+      </a>
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true"><div class="track" data-speed="50"><span>Kaaval</span><span>Pathivu</span><span>Mugam</span><span>Kaappu</span><span>Stewards' Room</span><span>FairDoor</span><span>AquaNXT</span><span>UpAid</span><span>Virasat</span></div></div>
-
-  <!-- 02 · work -->
-  <section id="work" class="work" data-chapter="Work">
-    <div class="wrap work-head">
-      <p class="label" data-scramble>02 · The work</p>
-      <h2 class="h1" data-split>Nine projects. <em>Try them, don't take my word.</em></h2>
-    </div>
-
-    <article class="proj" data-stage="2" style="--pa:#ec5418">
-      <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">01</span><span class="ptag">Agent safety · Python</span></div>
-        <div class="pbody">
-          <h3 class="pname" data-split>Kaa<em>val</em> <span class="tamil">காவல்</span></h3>
-          <p class="pline">A guard between an AI coding agent and the shell, database and tools. Allow, ask or deny before anything runs.</p>
-          <ul class="proof" data-stagger><li><b>6/6</b>real incidents replayed and refused</li><li><b>39</b>tests, no dependencies</li><li><b>Live</b>the real Python, in your browser</li></ul>
-          <div class="plinks"><a class="btn acc" href="https://shyamvasansathiskumar-ux.github.io/kaaval/" target="_blank" rel="noopener">Try it <span class="arr">↗</span></a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/kaaval" target="_blank" rel="noopener">Code</a></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="proj" data-stage="3" style="--pa:#9e1b32">
-      <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">02</span><span class="ptag">AI governance · Java + MySQL</span></div>
-        <div class="pbody">
-          <h3 class="pname" data-split>Pathi<em>vu</em> <span class="tamil">பதிவு</span></h3>
-          <p class="pline">An incident register for AI failures in India. It maps each one to OWASP, MITRE ATLAS and NIST, and runs the CERT-In and DPDP reporting clocks from the moment the company knew.</p>
-          <ul class="proof" data-stagger><li><b>110</b>tests, 65 of them attacks on the database</li><li><b>36</b>triggers: MySQL refuses to rewrite history</li><li><b>240/240</b>browser cases match the Java engine</li></ul>
-          <div class="plinks"><a class="btn acc" href="https://shyamvasansathiskumar-ux.github.io/pathivu/" target="_blank" rel="noopener">Try it <span class="arr">↗</span></a><a class="btn ghost" href="https://shyamvasansathiskumar-ux.github.io/pathivu/learn.html" target="_blank" rel="noopener">In plain words</a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/pathivu" target="_blank" rel="noopener">Code</a></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="proj" data-stage="4" style="--pa:#b3266b">
-      <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">03</span><span class="ptag">Authentication · Java + WebCrypto</span></div>
-        <div class="pbody">
-          <h3 class="pname" data-split>Mu<em>gam</em> <span class="tamil">முகம்</span></h3>
-          <p class="pline">Face sign-in where the face never leaves the device. The face check unlocks a key the browser won't export; the server only ever sees a signature.</p>
-          <ul class="proof" data-stagger><li><b>79</b>tests across Java, Node and a real browser</li><li><b>0</b>face images or templates sent to the server</li><li><b>Photo</b>a still photo of the enrolled face can't sign in</li></ul>
-          <div class="plinks"><a class="btn acc" href="https://shyamvasansathiskumar-ux.github.io/mugam/" target="_blank" rel="noopener">See it <span class="arr">↗</span></a><a class="btn ghost" href="https://shyamvasansathiskumar-ux.github.io/mugam/try.html" target="_blank" rel="noopener">Try it with your camera</a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/mugam" target="_blank" rel="noopener">Code</a></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="proj" data-stage="5" style="--pa:#2a3cf2">
-      <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">04</span><span class="ptag">Applied cryptography · Java</span></div>
-        <div class="pbody">
-          <h3 class="pname" data-split>Kaap<em>pu</em> <span class="tamil">காப்பு</span></h3>
-          <p class="pline">A 2FA authenticator built from the RFCs, with an encrypted vault whose key is split into shares. Lose your phone, keep your accounts.</p>
-          <ul class="proof" data-stagger><li><b>70</b>tests, every RFC vector</li><li><b>2 of 3</b>shares rebuild the vault</li><li><b>36/36</b>checks pass live on the page</li></ul>
-          <div class="plinks"><a class="btn acc" href="https://shyamvasansathiskumar-ux.github.io/kaappu/" target="_blank" rel="noopener">Try it <span class="arr">↗</span></a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/kaappu" target="_blank" rel="noopener">Code</a></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="proj" data-stage="6" style="--pa:#9c6400">
-      <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">05</span><span class="ptag">Data · Formula 1 · Python</span></div>
-        <div class="pbody">
-          <h3 class="pname" data-split>Stewards' <em>Room</em></h3>
-          <p class="pline">Same offence, same penalty? An open register of F1 stewards' decisions that quotes the FIA's own documents, runs each driver's penalty-points clock and checks the FIA's arithmetic.</p>
-          <ul class="proof" data-stagger><li><b>2,629</b>FIA documents indexed, 2025 and 2026</li><li><b>4 → 0</b>penalised collisions with points, 2025 vs 2026 (small sample)</li><li><b>44</b>tests, standard library only</li></ul>
-          <div class="plinks"><a class="btn acc" href="https://shyamvasansathiskumar-ux.github.io/stewards-room/" target="_blank" rel="noopener">See it <span class="arr">↗</span></a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/stewards-room" target="_blank" rel="noopener">Code</a></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="proj" data-stage="7" style="--pa:#12734a">
-      <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">06</span><span class="ptag">Systems · Simulation</span></div>
-        <div class="pbody">
-          <h3 class="pname" data-split>Fair<em>Door</em></h3>
-          <p class="pline">Rate limiting that can tell a deadline rush from a script flood: count per student, judge the deadline on arrival.</p>
-          <ul class="proof" data-stagger><li><b>68.4 → 0</b>students missing a deadline under attack</li><li><b>90/90</b>browser runs match the Python exactly</li><li><b>Live</b>run the simulation yourself</li></ul>
-          <div class="plinks"><a class="btn acc" href="https://shyamvasansathiskumar-ux.github.io/fairdoor/" target="_blank" rel="noopener">Run it <span class="arr">↗</span></a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/fairdoor" target="_blank" rel="noopener">Code</a></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="proj" data-stage="8" style="--pa:#0b7a75">
-      <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">07</span><span class="ptag">Hardware · Venture · In progress</span></div>
-        <div class="pbody">
-          <h3 class="pname" data-split>Aqua<em>NXT</em> <span class="tamil">நீர்</span></h3>
-          <p class="pline">Gravity water filters that tell you how they're doing. Home, Go and Station, with Neer, an on-board assistant that never says "safe" without evidence.</p>
-          <ul class="proof" data-stagger><li><b>3</b>prototypes: kitchen, field, school</li><li><b>Finalist</b>ASU Venture X 2026, REC local round</li><li><b>Nov</b>lab results, then the final in Tempe</li></ul>
-          <div class="plinks"><a class="btn acc" href="https://shyamvasansathiskumar-ux.github.io/aquanxt/" target="_blank" rel="noopener">See it <span class="arr">↗</span></a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/aquanxt" target="_blank" rel="noopener">Project</a></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="proj" data-stage="9" style="--pa:#7d9a12">
-      <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">08</span><span class="ptag">AI · Hackathon · Team</span></div>
-        <div class="pbody">
-          <h3 class="pname" data-split>Up<em>Aid</em></h3>
-          <p class="pline">Evidence-first financial aid discovery. Five agents search institutional policy and answer only with source excerpts. If it's not in the source, it isn't aid.</p>
-          <ul class="proof" data-stagger><li><b>Cintana</b>AI Challenge 2026</li><li><b>34</b>alliance campuses in the registry</li><li><b>155</b>tests</li></ul>
-          <div class="plinks"><a class="btn acc" href="https://upaid-site.vercel.app" target="_blank" rel="noopener">Open it <span class="arr">↗</span></a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/Upaid" target="_blank" rel="noopener">Code</a></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="proj" data-stage="10" style="--pa:#a0752a">
-      <div class="wrap pgrid">
-        <div class="pmeta"><span class="pnum">09</span><span class="ptag">Fintech · Hackathon · Team</span></div>
-        <div class="pbody">
-          <h3 class="pname" data-split>Vira<em>sat</em></h3>
-          <p class="pline">Financial continuity for families: money stranded across RBI, EPFO, IRDAI, SEBI and LIC, brought into one calm record of what to claim next.</p>
-          <ul class="proof" data-stagger><li><b>1st</b>FinTech domain, PEC Hacks 4.0 (36 h)</li><li><b>5</b>regulators in one record</li><li><b>Demo</b>runs on sample data, nothing leaves the browser</li></ul>
-          <div class="plinks"><a class="btn acc" href="https://virasatweb-seven.vercel.app" target="_blank" rel="noopener">Open it <span class="arr">↗</span></a><a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux/virasat" target="_blank" rel="noopener">Code</a></div>
-        </div>
-      </div>
-    </article>
+  <!-- the rule, filled in by scrolling -->
+  <section class="rulebook" id="rulebook" data-rail="Rule">
+    <p class="pix idx">02 / HOW I WORK</p>
+    <p class="big-fill fill" id="bigFill">Break it on purpose. Write down what to fix. <em>Keep the proof,</em> not the story.</p>
+    <ol class="steps">
+      <li class="glass"><span class="pix">01</span><b>Break</b><p>Red-team the system, with an attacker and without one: prompt injection, unsafe tools, plain mistakes.</p></li>
+      <li class="glass"><span class="pix">02</span><b>Write down</b><p>Map what failed to OWASP, MITRE ATLAS and NIST, and say which control would have stopped it.</p></li>
+      <li class="glass"><span class="pix">03</span><b>Prove</b><p>Ship the control with tests and a record nobody can quietly edit.</p></li>
+    </ol>
   </section>
 
-  <!-- 03 · research -->
-  <section id="research" data-stage="11" data-chapter="Research">
-    <div class="wrap">
-      <div class="head-row">
-        <p class="label" data-scramble>03 · Research &amp; writing</p>
-        <h2 class="h1" data-split>Findings are only useful <em>once someone can act on them.</em></h2>
-      </div>
-      <div class="tiers" data-stagger>
-        <a class="tier card" href="https://github.com/shyamvasansathiskumar-ux/ai-incident-atlas" target="_blank" rel="noopener"><span class="ttag">Atlas</span><h3 class="h3">ai-incident-atlas</h3><p>Ten public AI incidents mapped across OWASP, MITRE ATLAS and the NIST AI RMF, each with the one control that would have stopped it.</p><span class="tgo">10 incidents · NA-01 to NA-05 ↗</span></a>
-        <a class="tier card" href="https://github.com/shyamvasansathiskumar-ux/ai-governance-portfolio/blob/main/analyses/2026-10-no-adversary-essay.md" target="_blank" rel="noopener"><span class="ttag">Essay</span><h3 class="h3">The AI deleted the database. Nobody attacked it.</h3><p>Every framework assumes an adversary. Six real incidents had none.</p><span class="tgo">Read ↗</span></a>
-        <a class="tier card" href="https://github.com/shyamvasansathiskumar-ux/ai-governance-portfolio/blob/main/analyses/2026-10-ai-coding-agent-production-access.md" target="_blank" rel="noopener"><span class="ttag">Risk assessment</span><h3 class="h3">An AI coding agent with production access</h3><p>NIST AI RMF, DPDP Rules 2025 and CERT-In. Risk register R1–R7, rated High.</p><span class="tgo">Read ↗</span></a>
-        <a class="tier card" href="https://github.com/shyamvasansathiskumar-ux/redteam-log" target="_blank" rel="noopener"><span class="ttag">Red-team log</span><h3 class="h3">OWASP LLM Top 10 → ATLAS</h3><p>All ten classes mapped technique by technique, the Agentic Top 10 started, and a one-command garak harness.</p><span class="tgo">10/10 classes ↗</span></a>
-      </div>
-    </div>
+  <!-- 04 research -->
+  <section class="research" id="research" data-rail="Research">
+    <header class="sec-h">
+      <p class="pix idx">03 / RESEARCH</p>
+      <h2 class="h2" data-lines>Research <em>&amp; writing</em></h2>
+      <p class="note">Findings are only useful once someone can act on them.</p>
+    </header>
+    <ol class="index">
+      <li><a href="https://github.com/shyamvasansathiskumar-ux/kanakku" target="_blank" rel="noopener" data-snd><span class="pix k">Paper</span><span class="t">Kanakku: telling revisions from rounding in public statistics</span><span class="pix m">Draft · dg.o 2027 ↗</span></a></li>
+      <li><a href="https://github.com/shyamvasansathiskumar-ux/ai-incident-atlas" target="_blank" rel="noopener" data-snd><span class="pix k">Atlas</span><span class="t">Ten AI incidents mapped to OWASP, MITRE ATLAS and NIST</span><span class="pix m">10 incidents ↗</span></a></li>
+      <li><a href="https://github.com/shyamvasansathiskumar-ux/ai-governance-portfolio/blob/main/analyses/2026-10-no-adversary-essay.md" target="_blank" rel="noopener" data-snd><span class="pix k">Essay</span><span class="t">The AI deleted the database. Nobody attacked it.</span><span class="pix m">Read ↗</span></a></li>
+      <li><a href="https://github.com/shyamvasansathiskumar-ux/ai-governance-portfolio" target="_blank" rel="noopener" data-snd><span class="pix k">Risk</span><span class="t">An AI coding agent with production access: NIST AI RMF, DPDP, CERT-In</span><span class="pix m">R1–R7 ↗</span></a></li>
+      <li><a href="https://github.com/shyamvasansathiskumar-ux/redteam-log" target="_blank" rel="noopener" data-snd><span class="pix k">Log</span><span class="t">OWASP LLM Top 10, mapped to ATLAS technique by technique</span><span class="pix m">10 / 10 ↗</span></a></li>
+      <li><a href="https://github.com/shyamvasansathiskumar-ux/cybersecurity-fundamentals" target="_blank" rel="noopener" data-snd><span class="pix k">Notes</span><span class="t">Security fundamentals: networking, web, cryptography, CTF write-ups</span><span class="pix m">4 tracks ↗</span></a></li>
+      <li><a href="guide.html" data-snd><span class="pix k">Guide</span><span class="t">Every project, explained without jargon</span><span class="pix m">Plain English →</span></a></li>
+    </ol>
   </section>
 
-  <!-- 04 · credentials -->
-  <section id="credentials" data-stage="12" data-chapter="Credentials">
-    <div class="wrap grid">
-      <div class="col-l stack">
-        <p class="label" data-scramble>04 · Credentials</p>
-        <h2 class="h2" data-split>Verified so far. <em>In progress next.</em></h2>
+  <!-- 05 about -->
+  <section class="about" id="about" data-rail="About">
+    <header class="sec-h">
+      <p class="pix idx">04 / ABOUT</p>
+      <h2 class="h2" data-lines>Early in the field, <em>building in public.</em></h2>
+    </header>
+    <div class="ab">
+      <div class="ab-l">
+        <canvas class="rose" id="rose" aria-hidden="true"></canvas>
+        <blockquote class="q">“I'd rather be corrected than confidently wrong.”</blockquote>
       </div>
-      <div class="col-r">
-        <ul class="creds" data-stagger>
-          <li><span class="st done">Issued</span><div><b>Anthropic: 10+ certifications</b><p>AI Fluency · Building with the Claude API · Model Context Protocol · Agents and Workflows · Prompt Engineering</p></div><time>Sep 2026</time></li>
-          <li><span class="st done">Completed</span><div><b>Microsoft AI Red Teaming 101</b><p>Alongside the hands-on work in redteam-log.</p></div><time>Oct 2026</time></li>
-          <li><span class="st done">Issued</span><div><b>ASU: Co-Lecturing, Introduction to Engineering</b><p>ASU Pathways, Rajalakshmi Engineering College.</p></div><time>Mar 2026</time></li>
-          <li><span class="st done">Issued</span><div><b>Cambridge English: C1 Advanced</b><p>CEFR C1, overall score 187. Also: Tamil, Hindi (DBHPS Prathamic), French (through Class 10).</p></div><time>Mar 2024</time></li>
-          <li><span class="st">In progress</span><div><b>NIST AI Risk Management Framework</b><p>Applied in the governance portfolio.</p></div><time>—</time></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 · about -->
-  <section id="about" class="ink-band" data-stage="13" data-chapter="About">
-    <div class="wrap grid">
-      <div class="col-l stack">
-        <p class="label" data-scramble>05 · About</p>
-        <blockquote class="h2 quote" data-split>“I'd rather be corrected than <em>confidently wrong.</em>”</blockquote>
-      </div>
-      <div class="col-r stack">
-        <p class="body" data-rise>I'm a second-year CSE student at Rajalakshmi Engineering College, Chennai, and I head the Tech &amp; Skills Club under ASU Pathways. I'm early in this field and building in public on purpose: every claim on this page links to work you can check.</p>
-        <dl class="facts" data-stagger>
-          <div><dt>Education</dt><dd>B.E. Computer Science &amp; Engineering · REC · 2025–2029</dd></div>
-          <div><dt>Role</dt><dd>Head, Tech &amp; Skills Club · ASU Pathways · <a href="https://tech-skills-council.github.io/" target="_blank" rel="noopener">built its site ↗</a></dd></div>
-          <div><dt>Focus</dt><dd>AI red-teaming · agent safety · AI governance</dd></div>
-          <div><dt>Learning now</dt><dd>garak and PyRIT scans · DSA · Java · SQL</dd></div>
+      <div class="ab-r glass">
+        <p>I head the Tech &amp; Skills Club under ASU Pathways at REC. Most of what I build starts as a question someone couldn't answer: <em>what did the agent actually do, who was told, and when?</em></p>
+        <dl class="facts">
+          <div><dt class="pix">Education</dt><dd>B.E. Computer Science · Rajalakshmi Engineering College · 2025–29</dd></div>
+          <div><dt class="pix">Focus</dt><dd>AI red-teaming · agent safety · AI governance</dd></div>
+          <div><dt class="pix">Credentials</dt><dd>Anthropic (10+) · Microsoft AI Red Teaming 101 · Cambridge C1</dd></div>
+          <div><dt class="pix">Recognition</dt><dd>1st, PEC Hacks 4.0 FinTech · ASU Venture X finalist</dd></div>
+          <div><dt class="pix">Languages</dt><dd>English · Tamil · Hindi · French</dd></div>
         </dl>
+        <p class="ab-btn"><a class="btn" href="Shyam_Kumar_Resume.pdf" target="_blank" rel="noopener" data-snd>Résumé ↗</a><a class="btn ghost" href="Shyam_Kumar_CV.pdf" target="_blank" rel="noopener" data-snd>Full CV ↗</a></p>
       </div>
     </div>
   </section>
 </main>
 
-<footer id="contact" data-stage="14" data-chapter="Contact">
-  <div class="wrap">
-    <p class="label">06 · Contact</p>
-    <p class="big">Let's talk <em>risk.</em></p>
-    <div class="row">
-      <div class="links">
-        <a class="btn acc" href="mailto:shyamvasansathiskumar@gmail.com">shyamvasansathiskumar@gmail.com <span class="arr">↗</span></a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/shyamkumar-redteam" target="_blank" rel="noopener">LinkedIn <span class="arr">↗</span></a>
-        <a class="btn ghost" href="https://github.com/shyamvasansathiskumar-ux" target="_blank" rel="noopener">GitHub <span class="arr">↗</span></a>
-        <a class="btn ghost" href="Shyam_Kumar_Resume.pdf" target="_blank" rel="noopener">Résumé <span class="arr">↗</span></a>
-      </div>
-      <small>© 2026 Shyam Kumar · Chennai, India<br>Built in public.</small>
-    </div>
+<footer class="foot" id="contact" data-rail="Contact">
+  <p class="pix idx">05 / CONTACT</p>
+  <div class="big" aria-label="Let's talk risk.">
+    <span class="w w1">Let's</span><span class="w w2">talk</span><span class="w w3"><em>risk.</em></span>
+  </div>
+  <a class="mail glass" href="mailto:shyamvasansathiskumar@gmail.com" data-snd><span class="pix">Write to me</span>shyamvasansathiskumar@gmail.com<i>↗</i></a>
+  <div class="foot-g pix">
+    <a class="glass" href="https://www.linkedin.com/in/shyamkumar-redteam" target="_blank" rel="noopener" data-snd>LinkedIn ↗</a>
+    <a class="glass" href="https://github.com/shyamvasansathiskumar-ux" target="_blank" rel="noopener" data-snd>GitHub ↗</a>
+    <a class="glass" href="Shyam_Kumar_Resume.pdf" target="_blank" rel="noopener" data-snd>Résumé ↗</a>
+    <a class="glass" href="guide.html" data-snd>Plain-English guide →</a>
+    <span class="cr">© 2026 Shyam Kumar · Chennai · no trackers, no cookies</span>
   </div>
 </footer>
 
-<script src="gsap.min.js"></script>
-<script src="ScrollTrigger.min.js"></script>
-<script src="SplitText.min.js"></script>
-<script src="ScrambleTextPlugin.min.js"></script>
-<script src="lenis.min.js"></script>
-<script src="motion.js"></script>
-<script type="module" src="scene.js"></script>
+<script src="vendor/lenis.min.js?v=98572200af" integrity="sha384-DQeyf69ssQf/CXwxsodp79AkoIz8L+hzHbAPItK8KhP1TfOInl0eAd7qRJ9NDUxm"></script>
+<script src="vendor/gsap.min.js?v=3d1bea374a" integrity="sha384-3vCAhD+a3BOliP3QqjQINn6ZWiZxoqu0WFxX5ZQZgqekDZuSb1mJBrrLMmu94H8f"></script>
+<script src="vendor/ScrollTrigger.min.js?v=b5bb360661" integrity="sha384-H2WL1iy/jKQQ7MTHU2hskZKNHTYWWD/KgKE1vCNnaWY8An2ESTh23KN/fTp8XS3j"></script>
+<script src="vendor/SplitText.min.js?v=7b299a6b26" integrity="sha384-e98MX/fxZrUXA/6T+aCptryLfHgR2FpEmWxDbbPloHT0Qg79dEXKdLJ/iwD2lzxs"></script>
+<script src="assets/js/cursor.js?v=26def70326" integrity="sha384-06kj1thrtMxEOGoJe5Kbz3vF7aY1c43VbnKpUrJKXRnRX7QJxFMB4X+STvG8ZcAz"></script>
+<script src="assets/js/site.js?v=7a7ae46776" integrity="sha384-87JrYkBUqqQNhxz3rg2iHpbUc3RkNYf5c6ja3wHlMrR2vvygoohgQPrh4SW1StTT"></script>
+<script src="assets/js/world.js?v=2170162397" integrity="sha384-1P5Y8kt7FmRlCbx5nTUSXy+pAo1mAPUVt58VUjqXnrIspNia6DQwMECRRYcjCN8f"></script>
 </body>
 </html>

@@ -61,3 +61,22 @@
 @media (max-width: 640px) { .facts div { grid-template-columns: 1fr; gap: 4px; } }
 
 footer .label { margin-bottom: 18px; }
+
+/* ---------- loader: a reel of the nine projects ---------- */
+.loader.reel { --reel: var(--ink); }
+.loader.reel .reel-card { position: absolute; left: 50%; top: 50%; transform: translate(-50%, calc(-21vmin - 100%)); display: grid; justify-items: center; gap: 6px; text-align: center; width: min(560px, 86vw); }
+.loader.reel .reel-n { font: 500 11.5px var(--mono); letter-spacing: .2em; color: var(--reel); transition: color .3s; }
+.loader.reel .reel-t { font: 300 clamp(40px, 6.4vw, 84px)/.95 var(--serif); letter-spacing: -.02em; color: var(--ink); }
+.loader.reel .reel-s { font: 400 italic clamp(16px, 1.5vw, 20px)/1.3 var(--serif); color: var(--ink-2); }
+.loader.reel .reel-card.swap > * { animation: reelIn .42s var(--ease) both; }
+.loader.reel .reel-card.swap .reel-t { animation-delay: .03s; }
+.loader.reel .reel-card.swap .reel-s { animation-delay: .07s; }
+@keyframes reelIn { from { opacity: 0; transform: translateY(14px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+.loader.reel .mid { width: min(360px, 76vw); }
+.loader.reel .bar { display: none; }
+.loader.reel .segs { display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px; }
+.loader.reel .segs i { --f: 0; display: block; height: 3px; border-radius: 2px; background: color-mix(in srgb, var(--ink) 14%, transparent); position: relative; overflow: hidden; }
+.loader.reel .segs i::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleX(var(--f)); transform-origin: left center; }
+.loader.reel:not(.model) .mid::before { display: none; }
+@media (max-width: 600px) { .loader.reel .reel-card { transform: translate(-50%, calc(-19vmin - 100%)); } }
+@media (max-width: 600px) { .loader.reel .who span + span { display: none; } }
