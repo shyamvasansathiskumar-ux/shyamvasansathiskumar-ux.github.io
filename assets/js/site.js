@@ -108,7 +108,7 @@
   });
 
   /* ---------- one scroll handler: meter, active section, clouds, band speed ---------- */
-  var meter = $("#meter"), sp = $("#sp"), sky = $(".sky"), lastY = scrollY, vel = 0;
+  var meter = $("#meter"), sp = $("#sp"), tl = $("#tl"), lastY = scrollY, vel = 0;
   function onScroll() {
     var H = innerHeight, max = root.scrollHeight - H, p = max > 0 ? scrollY / max : 0;
     sp.textContent = pad(p * 100, 3); meter.style.setProperty("--p", p.toFixed(4));
@@ -116,6 +116,7 @@
     railLinks.forEach(function (a, i) { a.classList.toggle("on", i === cur); });
     navLinks.forEach(function (a) { a.classList.toggle("on", a.getAttribute("href") === "#" + secs[cur].id); });
     vel = clamp(vel + (scrollY - lastY) * .04, -12, 12); lastY = scrollY;
+    var tr = tl.getBoundingClientRect(); tl.style.setProperty("--tlp", clamp((H * .62 - tr.top) / Math.max(1, tr.height - 60), 0, 1).toFixed(3));
   }
   addEventListener("scroll", onScroll, { passive: true }); addEventListener("resize", onScroll);
 
@@ -135,13 +136,110 @@
     requestAnimationFrame(bandLoop);
   })(bLast);
 
+  /* project names pass the other way */
+  var names = $("#names"); names.innerHTML += names.innerHTML;
+  var nx = 0, nLast = performance.now(), nOn = false;
+  new IntersectionObserver(function (es) { nOn = es[0].isIntersecting; }).observe(names);
+  (function namesLoop(now) {
+    var dt = Math.min(.05, (now - nLast) / 1000); nLast = now;
+    if (nOn && !reduce) { var w = names.scrollWidth / 2; nx += (60 + vel * 30) * dt; if (nx >= 0) nx -= w; if (nx < -w) nx += w; names.style.transform = "translate3d(" + nx.toFixed(1) + "px,0,0)"; }
+    requestAnimationFrame(namesLoop);
+  })(nLast);
+
   /* ---------- posters lean toward the pointer (no light, just angle) ---------- */
   if (fine && !reduce) $$(".poster").forEach(function (p) {
     var rx = 0, ry = 0, tx = 0, ty = 0, raf = 0;
-    function step() { rx += (tx - rx) * .12; ry += (ty - ry) * .12; p.style.transform = "perspective(1100px) rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)"; raf = (Math.abs(tx - rx) + Math.abs(ty - ry) > .02) ? requestAnimationFrame(step) : 0; }
+    function step() { rx += (tx - rx) * .12; ry += (ty - ry) * .12; p.style.setProperty("--tx", rx.toFixed(2) + "deg"); p.style.setProperty("--ty", ry.toFixed(2) + "deg"); raf = (Math.abs(tx - rx) + Math.abs(ty - ry) > .02) ? requestAnimationFrame(step) : 0; }
     p.addEventListener("pointermove", function (e) { var r = p.getBoundingClientRect(); ty = ((e.clientX - r.left) / r.width - .5) * 7; tx = -((e.clientY - r.top) / r.height - .5) * 6; if (!raf) raf = requestAnimationFrame(step); });
     p.addEventListener("pointerleave", function () { tx = ty = 0; if (!raf) raf = requestAnimationFrame(step); });
   });
+
+  /* ---------- curved display: blocks lean back toward the top and bottom edges, more so while the page moves ---------- */
+  if (!reduce) {
+    var cv = $$(".cvx"), vS = 0, cY = scrollY;
+    (function curve() {
+      var H = innerHeight, v = scrollY - cY; cY = scrollY;
+      vS += (Math.min(1, Math.abs(v) / 42) - vS) * .1;
+      var k = .42 + vS * .8;
+      for (var i = 0; i < cv.length; i++) {
+        var r = cv[i].getBoundingClientRect();
+        if (r.bottom < -240 || r.top > H + 240) continue;
+        var c = clamp((r.top + r.height / 2 - H / 2) / (H / 2), -1.35, 1.35);
+        cv[i].style.setProperty("--rx", (c * 10.5 * k).toFixed(2) + "deg");
+        cv[i].style.setProperty("--tz", (c * c * 42 * k).toFixed(1) + "px");
+      }
+      requestAnimationFrame(curve);
+    })();
+  }
+
+  /* ---------- a glass badge follows the pointer over posters ---------- */
+  var badge = $("#curBadge");
+  if (fine && badge) {
+    var bx2 = 0, by2 = 0, tx2 = 0, ty2 = 0, bOn2 = false, braf = 0;
+    function bstep() { bx2 += (tx2 - bx2) * .2; by2 += (ty2 - by2) * .2; badge.style.transform = "translate3d(" + bx2.toFixed(1) + "px," + by2.toFixed(1) + "px,0)"; braf = (bOn2 || Math.abs(tx2 - bx2) + Math.abs(ty2 - by2) > .5) ? requestAnimationFrame(bstep) : 0; }
+    addEventListener("pointermove", function (e) {
+      tx2 = e.clientX; ty2 = e.clientY;
+      var on = !!(e.target && e.target.closest && e.target.closest(".poster"));
+      if (on && !bOn2) { bx2 = tx2; by2 = ty2; }
+      if (on !== bOn2) { bOn2 = on; badge.classList.toggle("on", on); var cw = $(".cur"); if (cw) cw.classList.toggle("is-badge", on); }
+      if (!braf) braf = requestAnimationFrame(bstep);
+    }, { passive: true });
+    addEventListener("scroll", function () { if (bOn2) { var el = d.elementFromPoint(tx2, ty2); if (!(el && el.closest(".poster"))) { bOn2 = false; badge.classList.remove("on"); var cw = $(".cur"); if (cw) cw.classList.remove("is-badge"); } } }, { passive: true });
+  }
+
+  /* ---------- demo 01: the guard. A short rule list; text is only ever shown as text ---------- */
+  var RULES = [
+    [/\brm\s+-[a-z]*r[a-z]*f?\b.*(~|\/\s*$|\/\*|\$HOME|\.\.)|\brm\s+-[a-z]*f[a-z]*r/i, "deny", "Deletes files outside the project folder."],
+    [/\.env|id_rsa|\.ssh|credentials|secret|token|password/i, "deny", "Touches secrets. An agent never needs to read or send these."],
+    [/\b(drop|truncate)\s+(table|database)|\bdelete\s+from\b(?!.*\bwhere\b)/i, "deny", "Destroys data with no way back."],
+    [/\b(curl|wget|nc)\b.*\|\s*(ba)?sh|\|\s*(curl|nc)\b|\bcurl\b.*(-d|--data)/i, "deny", "Runs or sends something through an outside host."],
+    [/\bsudo\b|\bchmod\s+777|\bmkfs\b|\bdd\s+if=|:\(\)\s*\{/i, "deny", "Changes the machine itself, not the project."],
+    [/push\s+.*(--force|-f\b)|reset\s+--hard|\bgit\s+clean\b|rebase/i, "ask", "Rewrites shared history. A person confirms first."],
+    [/\b(npm|pnpm|yarn)\s+(install|add|i)\b|\bpip3?\s+install\b|\bbrew\s+install\b|\bapt(-get)?\s+install\b/i, "ask", "Installs code from the network. A person confirms first."],
+    [/\b(deploy|publish|release)\b|\bkubectl\b|\bterraform\s+apply\b|\bgit\s+push\b/i, "ask", "Leaves this machine. A person confirms first."],
+    [/^\s*(ls|cat|pwd|echo|grep|rg|head|tail|wc|git\s+(status|diff|log)|npm\s+(test|run\s+\w+)|pytest|node|python3?)\b/i, "allow", "Reads or tests inside the project."]
+  ];
+  function judge(cmd) { for (var i = 0; i < RULES.length; i++) if (RULES[i][0].test(cmd)) return RULES[i]; return [null, "ask", "Not on the allow-list, so a person decides."]; }
+  var gOut = $("#gOut"), gIn = $("#gIn");
+  function runGuard(cmd) {
+    cmd = String(cmd || "").replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, 120); if (!cmd) return;
+    var v = judge(cmd);
+    if (gOut.children.length > 6 || $(".t-dim", gOut)) gOut.textContent = "";
+    var c = d.createElement("p"); c.className = "t-cmd"; c.textContent = cmd;
+    var r = d.createElement("p"); r.className = "t-v " + v[1]; var b = d.createElement("b"); b.textContent = v[1].toUpperCase(); var s = d.createElement("span"); s.textContent = v[2]; r.appendChild(b); r.appendChild(s);
+    gOut.appendChild(c); gOut.appendChild(r); gOut.scrollTop = gOut.scrollHeight;
+    tick(v[1] === "deny" ? 220 : v[1] === "ask" ? 520 : 1100);
+  }
+  $$("#gChips [data-cmd]").forEach(function (b) { b.addEventListener("click", function () { runGuard(b.dataset.cmd); }); });
+  $("#gForm").addEventListener("submit", function (e) { e.preventDefault(); runGuard(gIn.value); gIn.value = ""; });
+
+  /* ---------- demo 02: a chain of sealed entries, real SHA-256 ---------- */
+  var SEED = ["Agent opened ticket #114", "Agent read the customer file", "Agent issued a refund of ₹2,400", "Supervisor notified at 14:02"];
+  var recs = $("#recs"), chainV = $("#chainV"), rows = [], sealed = [];
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (x) { return ("0" + x.toString(16)).slice(-2); }).join(""); }
+  function sha(text) {
+    if (window.crypto && crypto.subtle && window.TextEncoder) return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(hex);
+    var h = 2166136261; for (var i = 0; i < text.length; i++) { h ^= text.charCodeAt(i); h = Math.imul(h, 16777619); } return Promise.resolve(("0000000" + (h >>> 0).toString(16)).slice(-8));
+  }
+  function chainOf(texts) { var out = [], p = Promise.resolve("genesis"); texts.forEach(function (t) { p = p.then(function (prev) { return sha(prev + "|" + t); }).then(function (h) { out.push(h); return h; }); }); return p.then(function () { return out; }); }
+  function check() {
+    chainOf(rows.map(function (r) { return r.input.value; })).then(function (now) {
+      var good = 0, broken = false;
+      rows.forEach(function (r, i) { var ok = now[i] === sealed[i]; if (!ok) broken = true; if (ok) good++; r.li.classList.toggle("bad", !ok); r.st.textContent = ok ? "SEALED" : "BROKEN"; r.code.textContent = "sha-256 " + now[i].slice(0, 28) + "…"; });
+      chainV.textContent = broken ? "Chain broken · " + good + " of " + rows.length + " match" : "Chain intact · " + rows.length + " of " + rows.length + " match";
+      chainV.classList.toggle("bad", broken);
+    });
+  }
+  SEED.forEach(function (t, i) {
+    var li = d.createElement("li"), input = d.createElement("input"), st = d.createElement("span"), code = d.createElement("code");
+    input.type = "text"; input.value = t; input.maxLength = 60; input.spellcheck = false; input.setAttribute("aria-label", "Entry " + (i + 1));
+    st.className = "st"; st.textContent = "SEALED";
+    li.appendChild(input); li.appendChild(st); li.appendChild(code); recs.appendChild(li);
+    rows.push({ li: li, input: input, st: st, code: code });
+    input.addEventListener("input", function () { check(); tick(700); });
+  });
+  chainOf(SEED).then(function (h) { sealed = h; check(); });
+  $("#chainReset").addEventListener("click", function () { rows.forEach(function (r, i) { r.input.value = SEED[i]; }); check(); });
 
   /* buttons and pills drift a little toward the pointer */
   if (fine && !reduce) $$(".mail, .foot-g a, .btn, .chip").forEach(function (b) {
@@ -182,8 +280,9 @@
 
   /* ---------- entrances ---------- */
   $$(".poster").forEach(function (p, i) { p.classList.add("fx"); p.style.setProperty("--d", ((i % 3) * .08) + "s"); });
-  $$(".say-2, .stats, .band, .steps li, .index li, .ab-r, .q, .mail, .foot-g, .sec-h .note, .sec-h .idx, .rulebook > .idx, .foot > .idx").forEach(function (el, i) { el.classList.add("fx"); });
-  $$(".steps li").forEach(function (el, i) { el.style.setProperty("--d", (i * .1) + "s"); });
+  $$(".say-2, .stats, .band, .steps li, .index li, .ab-r, .q, .mail, .foot-g, .sec-h .note, .sec-h .idx, .rulebook > .idx, .foot > .idx, .lab-c, .kit-c, .tline li, .faq details").forEach(function (el, i) { el.classList.add("fx"); });
+  $$(".steps li, .kit-c, .lab-c").forEach(function (el, i) { el.style.setProperty("--d", ((i % 3) * .1) + "s"); });
+  $$(".faq details").forEach(function (el, i) { el.style.setProperty("--d", ((i % 2) * .08) + "s"); });
   var me = $("#me");
   function count(el) {
     var n = +el.dataset.count, suf = el.dataset.suffix || "", t0 = performance.now(), dur = 1400;
